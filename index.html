@@ -279,6 +279,10 @@
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
         }
 
+        .quick-action-btn:nth-child(5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
         /* Announcements */
         .announcements {
             background: white;
@@ -678,6 +682,10 @@
             .schedule-table td {
                 padding: 8px 4px;
             }
+
+            .quick-actions-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Loading Animation */
@@ -715,7 +723,7 @@
         <!-- Search Bar -->
         <div class="search-container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="🔍 ค้นหาบริการที่ต้องการ... (เช่น รถรับส่ง, อาหาร, คลินิก)">
+                <input type="text" id="searchInput" placeholder="🔍 ค้นหาบริการที่ต้องการ... (เช่น รถรับส่ง, อาหาร, คลินิก, อบรม)">
                 <button class="search-btn" onclick="searchServices()">ค้นหา</button>
             </div>
         </div>
@@ -735,6 +743,9 @@
                 </button>
                 <button class="quick-action-btn" onclick="openCategory('hr')">
                     👥 HR Services
+                </button>
+                <button class="quick-action-btn" onclick="window.open('https://sakorn564.github.io/Training-skill-update/', '_blank')">
+                    🎓 ลงทะเบียนอบรม
                 </button>
             </div>
         </div>
@@ -766,8 +777,8 @@
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
-            <!-- Training -->
-            <div class="category-card" onclick="openCategory('training')">
+            <!-- Training - แก้ไขให้เปิดลิงก์โดยตรง -->
+            <div class="category-card" onclick="window.open('https://sakorn564.github.io/Training-skill-update/', '_blank')">
                 <div class="category-icon">🎓</div>
                 <div class="category-title">อบรม & พัฒนา</div>
                 <div class="category-desc">คอร์สอบรม ลงทะเบียน และติดตามผล</div>
@@ -1071,25 +1082,6 @@
                     </div>
                 `
             },
-            training: {
-                icon: '🎓',
-                title: 'อบรม & พัฒนา',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกอบรมและพัฒนาจัดคอร์สอบรมหลากหลาย เพื่อพัฒนาทักษะและความรู้ของพนักงาน</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเชื่อมต่อระบบลงทะเบียน...')">
-                            📝 ลงทะเบียนอบรม
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดปฏิทินอบรม...')">
-                            📅 ดูปฏิทินอบรม
-                        </button>
-                    </div>
-                `
-            },
             library: {
                 icon: '📚',
                 title: 'ห้องสมุด',
@@ -1251,7 +1243,7 @@
             }
         }
 
-        // Search Function
+        // Search Function - อัปเดตให้รองรับคำค้นหา "อบรม"
         function searchServices() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             
@@ -1273,7 +1265,14 @@
                 'แพทย์': 'clinic',
                 'หมอ': 'clinic',
                 'hr': 'hr',
-                'ทรัพยากรบุคคล': 'hr'
+                'ทรัพยากรบุคคล': 'hr',
+                // เพิ่มการค้นหาสำหรับอบรม
+                'อบรม': () => window.open('https://sakorn564.github.io/Training-skill-update/', '_blank'),
+                'training': () => window.open('https://sakorn564.github.io/Training-skill-update/', '_blank'),
+                'เทรนนิ่ง': () => window.open('https://sakorn564.github.io/Training-skill-update/', '_blank'),
+                'คอร์ส': () => window.open('https://sakorn564.github.io/Training-skill-update/', '_blank'),
+                'พัฒนา': () => window.open('https://sakorn564.github.io/Training-skill-update/', '_blank'),
+                'เรียน': () => window.open('https://sakorn564.github.io/Training-skill-update/', '_blank')
             };
 
             const result = searchMap[searchTerm];
@@ -1325,4 +1324,3 @@
     </script>
 </body>
 </html>
-

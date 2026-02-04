@@ -1,1327 +1,311 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WWC Smart Services Hub</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Header */
-        .header {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-            text-align: center;
-            animation: slideDown 0.5s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .header h1 {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            color: #666;
-            font-size: 1.2em;
-        }
-
-        .header .tagline {
-            color: #999;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-        /* Search Bar */
-        .search-container {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-            animation: fadeIn 0.7s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .search-box input {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid #e0e0e0;
-            border-radius: 30px;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-        }
-
-        .search-box input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .search-btn {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .search-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* Categories Grid */
-        .categories-title {
-            color: white;
-            font-size: 2em;
-            margin-bottom: 20px;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .category-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            animation: scaleIn 0.5s ease;
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-
-        .category-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .category-icon {
-            font-size: 4em;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
-        }
-
-        .category-title {
-            font-size: 1.5em;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .category-desc {
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.5;
-        }
-
-        .category-badge {
-            display: inline-block;
-            background: #28a745;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            margin-top: 10px;
-            font-weight: 600;
-        }
-
-        .badge-new {
-            background: #ff6b6b;
-        }
-
-        .badge-popular {
-            background: #ffd93d;
-            color: #333;
-        }
-
-        /* Quick Actions */
-        .quick-actions {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-
-        .quick-actions h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-
-        .quick-actions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .quick-action-btn {
-            padding: 20px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .quick-action-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .quick-action-btn:nth-child(1) {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .quick-action-btn:nth-child(2) {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .quick-action-btn:nth-child(3) {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .quick-action-btn:nth-child(4) {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
-
-        /* Announcements */
-        .announcements {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-
-        .announcements h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .announcement-item {
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border-left: 4px solid #667eea;
-            transition: all 0.3s ease;
-        }
-
-        .announcement-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .announcement-date {
-            color: #999;
-            font-size: 0.85em;
-            margin-bottom: 5px;
-        }
-
-        .announcement-title {
-            color: #333;
-            font-weight: 600;
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-        .announcement-text {
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.5;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background: white;
-            margin: 50px auto;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 1200px;
-            max-height: 85vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #eee;
-        }
-
-        .modal-title {
-            font-size: 2em;
-            color: #667eea;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .close-btn {
-            font-size: 2em;
-            color: #999;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            background: none;
-            border: none;
-            padding: 0;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .close-btn:hover {
-            color: #333;
-            background: #f0f0f0;
-        }
-
-        .modal-body {
-            padding: 20px 0;
-        }
-
-        .service-info {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        .service-info h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .service-info p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* HR Menu Grid */
-        .hr-menu-section {
-            margin: 20px 0;
-        }
-
-        .hr-section-title {
-            color: #667eea;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #f0f4ff;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .hr-menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .hr-menu-item {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 15px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .hr-menu-item:hover {
-            border-color: #667eea;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-        }
-
-        .hr-menu-item.new-badge::after {
-            content: 'NEW';
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff6b6b;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.65em;
-            font-weight: bold;
-        }
-
-        .hr-menu-item.hot-badge::after {
-            content: 'HOT';
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff9800;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.65em;
-            font-weight: bold;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .primary-btn {
-            flex: 1;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .primary-btn:hover {
-            transform: translateY(-3px);
-        }
-
-        .secondary-btn {
-            flex: 1;
-            padding: 15px;
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .secondary-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        /* ปุ่มกลับหน้าหลัก */
-        .back-home-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .back-home-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
-        }
-
-        /* Footer */
-        .footer {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            color: #666;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #667eea;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #764ba2;
-        }
-
-        /* Clinic Schedule Table */
-        .clinic-schedule {
-            margin: 20px 0;
-            overflow-x: auto;
-        }
-
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .schedule-table th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.95em;
-        }
-
-        .schedule-table td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #e0e0e0;
-            font-size: 0.9em;
-        }
-
-        .schedule-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .schedule-table tr:hover {
-            background: #e3f2fd;
-        }
-
-        .day-header {
-            background: #ff9800 !important;
-            color: white !important;
-            font-weight: bold;
-        }
-
-        .time-slot {
-            color: #666;
-            font-size: 0.85em;
-        }
-
-        .doctor-type {
-            font-weight: 600;
-            color: #333;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8em;
-            }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .search-box {
-                flex-direction: column;
-            }
-
-            .search-box input,
-            .search-btn {
-                width: 100%;
-            }
-
-            .modal-content {
-                margin: 20px;
-                padding: 20px;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-            }
-
-            .hr-menu-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .schedule-table {
-                font-size: 0.8em;
-            }
-
-            .schedule-table th,
-            .schedule-table td {
-                padding: 8px 4px;
-            }
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>🚀 WWC Smart Services Hub</h1>
-            <p>ระบบบริการแบบ One-Stop Service</p>
-            <p class="tagline">เข้าถึงบริการทั้งหมดได้ในที่เดียว • ง่าย • เร็ว • สะดวก</p>
+training: {
+    icon: '🎓',
+    title: 'อบรม & พัฒนา',
+    content: `
+        <div class="service-info">
+            <h3>📋 รายละเอียดบริการ</h3>
+            <p>แผนกอบรมและพัฒนาจัดคอร์สอบรมหลากหลาย เพื่อพัฒนาทักษะและความรู้ของพนักงาน ทั้งด้าน Technical Skills และ Soft Skills</p>
         </div>
 
-        <!-- Search Bar -->
-        <div class="search-container">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="🔍 ค้นหาบริการที่ต้องการ... (เช่น รถรับส่ง, อาหาร, คลินิก)">
-                <button class="search-btn" onclick="searchServices()">ค้นหา</button>
-            </div>
+        <div class="service-info">
+            <h3>🎯 PRB Site Training Landscape - Facilitated by PD&E</h3>
+            <p style="color: #666; margin-bottom: 15px;">ตารางหลักสูตรอบรมประจำปี CY2026</p>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="quick-actions">
-            <h2>⚡ การกระทำด่วน (Quick Actions)</h2>
-            <div class="quick-actions-grid">
-                <button class="quick-action-btn" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
-                    🚌 จองรถรับส่ง
-                </button>
-                <button class="quick-action-btn" onclick="window.open('https://sakorn564.github.io/food-menu-system/', '_blank')">
-                    🍽️ ดูเมนูวันนี้
-                </button>
-                <button class="quick-action-btn" onclick="openCategory('clinic')">
-                    🏥 นัดหมายคลินิก
-                </button>
-                <button class="quick-action-btn" onclick="openCategory('hr')">
-                    👥 HR Services
-                </button>
-            </div>
+        <div style="overflow-x: auto; margin: 20px 0;">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th style="min-width: 150px;">Skills / หมวดทักษะ</th>
+                        <th style="min-width: 200px;">Curriculum / หลักสูตร</th>
+                        <th style="min-width: 120px;">Learning Type</th>
+                        <th style="min-width: 150px;">Enrollment Method</th>
+                        <th style="min-width: 300px;">ช่วงเวลาจัดอบรม (CY2026)</th>
+                        <th style="min-width: 200px;">หมายเหตุ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- CI Skills -->
+                    <tr>
+                        <td rowspan="3" style="background: #e3f2fd; font-weight: bold;">CI Skills</td>
+                        <td>Kaizen</td>
+                        <td>Classroom</td>
+                        <td>Per request</td>
+                        <td>-</td>
+                        <td>Can be co-created</td>
+                    </tr>
+                    <tr>
+                        <td>QCC</td>
+                        <td>Classroom</td>
+                        <td>Per request</td>
+                        <td>-</td>
+                        <td>Can be co-created</td>
+                    </tr>
+                    <tr>
+                        <td>LSS</td>
+                        <td>Classroom</td>
+                        <td>HoDs nominate</td>
+                        <td style="background: #fff59d;">GB 18 days (3×6×1)</td>
+                        <td>Nominated by HoDs</td>
+                    </tr>
+
+                    <!-- Fundamental Hard Skills -->
+                    <tr>
+                        <td rowspan="5" style="background: #fff3e0; font-weight: bold;">Fundamental<br>Hard Skills</td>
+                        <td>Lean</td>
+                        <td>Classroom</td>
+                        <td>Adhoc/En-Masse</td>
+                        <td>-</td>
+                        <td>Mini-facilitator to support Func.</td>
+                    </tr>
+                    <tr>
+                        <td>SPC</td>
+                        <td>Classroom</td>
+                        <td>FIFO</td>
+                        <td style="background: #a5d6a7;">Feb</td>
+                        <td>Workshop is required</td>
+                    </tr>
+                    <tr>
+                        <td>MSA</td>
+                        <td>Classroom</td>
+                        <td>FIFO</td>
+                        <td style="background: #a5d6a7;">Mar</td>
+                        <td>Workshop is required</td>
+                    </tr>
+                    <tr>
+                        <td>FMEA (AIAG&VDA)</td>
+                        <td>Classroom</td>
+                        <td>FIFO</td>
+                        <td style="background: #a5d6a7;">Apr</td>
+                        <td>Workshop is required</td>
+                    </tr>
+                    <tr>
+                        <td>8D/RCA</td>
+                        <td>Classroom</td>
+                        <td>FIFO</td>
+                        <td style="background: #a5d6a7;">May-Jun</td>
+                        <td>Workshop is required</td>
+                    </tr>
+
+                    <!-- Functional Hard Skills - Automation -->
+                    <tr>
+                        <td rowspan="9" style="background: #f3e5f5; font-weight: bold;">Functional<br>Hard Skills</td>
+                        <td><strong>Basic 4IR (All can learn)</strong></td>
+                        <td>VDO Recording</td>
+                        <td>Career Explorer</td>
+                        <td style="background: #a5d6a7;">ทั้งปี</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>Automation (Specific participants)</td>
+                        <td>Classroom</td>
+                        <td>HoDs nominated</td>
+                        <td>-</td>
+                        <td>Manage by Group Class Session</td>
+                    </tr>
+                    <tr>
+                        <td>• Automation (All can learn)</td>
+                        <td>A1 Embedded/Advance Control system</td>
+                        <td>VDO Recording</td>
+                        <td>Career Explorer</td>
+                        <td style="background: #a5d6a7;">ทั้งปี</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>A2 Network system and Big Data</td>
+                        <td>VDO Recording</td>
+                        <td>Career Explorer</td>
+                        <td style="background: #a5d6a7;">ทั้งปี</td>
+                        <td>Automation Module2</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>A3 Advance Manufacturing Platform</td>
+                        <td>VDO Recording</td>
+                        <td>Career Explorer</td>
+                        <td style="background: #a5d6a7;">ทั้งปี</td>
+                        <td>Automation Module3</td>
+                    </tr>
+
+                    <!-- Data Analytics -->
+                    <tr>
+                        <td>Data Analytics (Specific participants)</td>
+                        <td>On-line</td>
+                        <td>HoDs nominated</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Analytics (All can learn)</strong></td>
+                        <td colspan="5" style="text-align: left; padding-left: 20px;"><strong>เลือกเรียนได้จาก Career Explorer (SharePoint):</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">
+                            • B1 Python<br>
+                            • B4 Database Management<br>
+                            • B2 Basic Mathematics<br>
+                            • D7 Business Intelligence<br>
+                            • B3 Image Processing
+                        </td>
+                        <td>VDO Recording</td>
+                        <td>SharePoint</td>
+                        <td style="background: #a5d6a7;">ทั้งปี (Self-paced)</td>
+                        <td>
+                            <a href="#" style="color: #667eea;">B4: Database Management Systems</a><br>
+                            <a href="#" style="color: #667eea;">B2: Basic Math</a><br>
+                            <a href="#" style="color: #667eea;">D7: Business Intelligence</a><br>
+                            <a href="#" style="color: #667eea;">B3: Image Processing</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 20px;">
+                            • D5 Data Modeling & Optimization<br>
+                            • D4 Machine Learning/Deep Learning<br>
+                            • D6 Artificial Intelligence<br>
+                            • B5 Model Deployment
+                        </td>
+                        <td>VDO Recording</td>
+                        <td>SharePoint</td>
+                        <td style="background: #a5d6a7;">ทั้งปี (Self-paced)</td>
+                        <td>
+                            <a href="#" style="color: #667eea;">D5: Data Modeling</a><br>
+                            <a href="#" style="color: #667eea;">D4: ML-DL</a><br>
+                            <a href="#" style="color: #667eea;">D6: Artificial Intelligence</a><br>
+                            <a href="#" style="color: #667eea;">B5: Model Deployment</a>
+                        </td>
+                    </tr>
+
+                    <!-- Robotics & AI -->
+                    <tr>
+                        <td style="background: #f3e5f5; font-weight: bold;">Functional<br>Hard Skills</td>
+                        <td>Robotics & AI (Specific participants)</td>
+                        <td>Classroom</td>
+                        <td>HoDs nominated</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <!-- Soft Skills -->
+                    <tr>
+                        <td rowspan="9" style="background: #e8f5e9; font-weight: bold;">Soft Skills</td>
+                        <td>Analytical & Creative Thinking (PM105, 106, 107)</td>
+                        <td>Classroom</td>
+                        <td>Distributed Quota</td>
+                        <td>-</td>
+                        <td>Refer seat allocation</td>
+                    </tr>
+                    <tr>
+                        <td>Collective Leadership (PM105, 106, 107)</td>
+                        <td>Classroom</td>
+                        <td>Distributed Quota</td>
+                        <td style="background: #fff59d;">Tentative</td>
+                        <td>Refer seat allocation</td>
+                    </tr>
+                    <tr>
+                        <td>Emotional Intelligence (PM105, 106, 107)</td>
+                        <td>Classroom</td>
+                        <td>Distributed Quota</td>
+                        <td style="background: #a5d6a7;">5-10 Mar</td>
+                        <td>Refer seat allocation</td>
+                    </tr>
+                    <tr>
+                        <td>Strategic Management (PM105, 106, 107)</td>
+                        <td>Classroom</td>
+                        <td>Distributed Quota</td>
+                        <td style="background: #a5d6a7;">26-27 Mar</td>
+                        <td>Refer seat allocation</td>
+                    </tr>
+                    <tr>
+                        <td>Influencer Model (PM108 up)</td>
+                        <td>Classroom</td>
+                        <td>Distributed Quota</td>
+                        <td>-</td>
+                        <td>Adhoc</td>
+                    </tr>
+                    <tr>
+                        <td>Resilience & Agile (PM105, 106, 107)</td>
+                        <td>Classroom</td>
+                        <td>Distributed Quota</td>
+                        <td style="background: #fff59d;">Tentative</td>
+                        <td>Refer seat allocation</td>
+                    </tr>
+                    <tr>
+                        <td>Complex Problem Solving (PM105, 106, 107)</td>
+                        <td>Classroom</td>
+                        <td>Distributed Quota</td>
+                        <td>-</td>
+                        <td>Refer seat allocation</td>
+                    </tr>
+                    <tr>
+                        <td>EmpowerHer Program (Women/PM 105+)</td>
+                        <td>Classroom</td>
+                        <td>Distributed Quota</td>
+                        <td style="background: #a5d6a7;">16-22 Jan, 19-Feb, 30 Apr, 21 May, 16-26 Jun</td>
+                        <td>Adhoc</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <!-- Categories -->
-        <h2 class="categories-title">📱 หมวดหมู่บริการทั้งหมด</h2>
-        <div class="categories-grid">
-            <!-- Transportation -->
-            <div class="category-card" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
-                <div class="category-icon">🚌</div>
-                <div class="category-title">รถรับส่งพนักงาน</div>
-                <div class="category-desc">ตรวจสอบเวลา เส้นทาง และจองรถรับส่ง</div>
-                <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
-            </div>
-
-            <!-- Canteen -->
-            <div class="category-card" onclick="window.open('https://sakorn564.github.io/food-menu-system/', '_blank')">
-                <div class="category-icon">🍽️</div>
-                <div class="category-title">แคนทีน</div>
-                <div class="category-desc">เมนูอาหาร ราคา และสั่งอาหารล่วงหน้า</div>
-                <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
-            </div>
-
-            <!-- Clinic -->
-            <div class="category-card" onclick="openCategory('clinic')">
-                <div class="category-icon">🏥</div>
-                <div class="category-title">คลินิกในบริษัท</div>
-                <div class="category-desc">นัดหมายแพทย์ พยาบาล และขอใบรับรอง</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Training -->
-            <div class="category-card" onclick="openCategory('training')">
-                <div class="category-icon">🎓</div>
-                <div class="category-title">อบรม & พัฒนา</div>
-                <div class="category-desc">คอร์สอบรม ลงทะเบียน และติดตามผล</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Library -->
-            <div class="category-card" onclick="openCategory('library')">
-                <div class="category-icon">📚</div>
-                <div class="category-title">ห้องสมุด</div>
-                <div class="category-desc">ค้นหาหนังสือ ยืม-คืน และจองห้องอ่าน</div>
-                <span class="category-badge badge-new">✨ ใหม่</span>
-            </div>
-
-            <!-- IT Support -->
-            <div class="category-card" onclick="openCategory('it')">
-                <div class="category-icon">💻</div>
-                <div class="category-title">IT Support</div>
-                <div class="category-desc">แจ้งปัญหา ขอใช้ซอฟต์แวร์ และคู่มือ</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- HR Services -->
-            <div class="category-card" onclick="openCategory('hr')">
-                <div class="category-icon">👥</div>
-                <div class="category-title">HR Services</div>
-                <div class="category-desc">ใบลา เงินเดือน สวัสดิการ และเอกสารครบวงจร</div>
-                <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
-            </div>
-
-            <!-- Facilities -->
-            <div class="category-card" onclick="openCategory('facilities')">
-                <div class="category-icon">🏢</div>
-                <div class="category-title">จัดการสิ่งอำนวยความสะดวก</div>
-                <div class="category-desc">แจ้งซ่อม จองห้องประชุม และขอใช้อุปกรณ์</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Security -->
-            <div class="category-card" onclick="openCategory('security')">
-                <div class="category-icon">🔒</div>
-                <div class="category-title">ความปลอดภัย</div>
-                <div class="category-desc">ขอบัตรผ่าน ลงทะเบียนแขก และรายงาน</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Finance -->
-            <div class="category-card" onclick="openCategory('finance')">
-                <div class="category-icon">💰</div>
-                <div class="category-title">การเงิน</div>
-                <div class="category-desc">เบิกค่าใช้จ่าย ขอเงินยืม และเช็คสถานะ</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Procurement -->
-            <div class="category-card" onclick="openCategory('procurement')">
-                <div class="category-icon">🛒</div>
-                <div class="category-title">จัดซื้อ</div>
-                <div class="category-desc">ขออนุมัติจัดซื้อ ติดตามสถานะ</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Gym -->
-            <div class="category-card" onclick="openCategory('gym')">
-                <div class="category-icon">💪</div>
-                <div class="category-title">ฟิตเนส</div>
-                <div class="category-desc">จองเวลาใช้ ดูคลาส และโปรแกรมออกกำลัง</div>
-                <span class="category-badge badge-new">✨ ใหม่</span>
-            </div>
-        </div>
-
-        <!-- Announcements -->
-        <div class="announcements">
-            <h2>📢 ประกาศ & ข่าวสาร</h2>
-            
-            <div class="announcement-item">
-                <div class="announcement-date">📅 วันนี้ • 09:00 น.</div>
-                <div class="announcement-title">🎉 เปิดให้บริการระบบใหม่แล้ว!</div>
-                <div class="announcement-text">
-                    WD Smart Services Hub พร้อมให้บริการแล้ววันนี้ เข้าถึงบริการทั้งหมดได้ในที่เดียว
+        <div class="service-info" style="background: #e3f2fd; border-left: 4px solid #2196f3; margin-top: 20px;">
+            <h3 style="color: #1565c0;">📌 สัญลักษณ์และคำอธิบาย</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 30px; height: 30px; background: #a5d6a7; border-radius: 5px;"></div>
+                    <span><strong>สีเขียว</strong> = Confirmed Plan</span>
                 </div>
-            </div>
-
-            <div class="announcement-item">
-                <div class="announcement-date">📅 วันนี้ • 11:30 น.</div>
-                <div class="announcement-title">🍽️ เมนูพิเศษวันนี้ที่แคนทีน</div>
-                <div class="announcement-text">
-                    ข้าวผัดกะเพราหมูสับพิเศษ พร้อมไข่ดาว ราคาเพียง 45 บาท (จำกัด 50 ที่)
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 30px; height: 30px; background: #fff59d; border-radius: 5px;"></div>
+                    <span><strong>สีเหลือง</strong> = Tentative Plan</span>
                 </div>
-            </div>
-
-            <div class="announcement-item">
-                <div class="announcement-date">📅 พรุ่งนี้ • 13:00 น.</div>
-                <div class="announcement-title">🎓 อบรม: Digital Transformation Workshop</div>
-                <div class="announcement-text">
-                    เชิญชวนพนักงานทุกท่านเข้าร่วมอบรม Digital Transformation ณ ห้องประชุม A1
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 30px; height: 30px; background: #e0e0e0; border-radius: 5px;"></div>
+                    <span><strong>สีเทา</strong> = Done/Nominated by HODs</span>
                 </div>
             </div>
         </div>
 
-        <!-- Footer -->
-        <div class="footer">
-            <div class="footer-links">
-                <a href="#">เกี่ยวกับเรา</a>
-                <a href="#">ติดต่อเรา</a>
-                <a href="#">คู่มือการใช้งาน</a>
-                <a href="#">แจ้งปัญหา</a>
-                <a href="#">นโยบายความเป็นส่วนตัว</a>
-            </div>
-            <p>© 2025 Western Digital Corporation. All Rights Reserved.</p>
-            <p style="font-size: 0.9em; margin-top: 10px; color: #999;">
-                Version 1.0.0 • Last Updated: 2025-01-27
+        <div class="service-info" style="background: #fff3cd; border-left: 4px solid #ffc107;">
+            <h3 style="color: #856404;">📚 วิธีการลงทะเบียนอบรม</h3>
+            <p style="color: #856404;">
+            <strong>1. Classroom Training:</strong> ลงทะเบียนผ่านระบบ Learning Management System (LMS)<br>
+            <strong>2. VDO Recording:</strong> เรียนได้ตลอดเวลาผ่าน Career Explorer บน SharePoint<br>
+            <strong>3. FIFO (First In First Out):</strong> ลงทะเบียนก่อนได้สิทธิ์ก่อน<br>
+            <strong>4. HoDs Nominated:</strong> หัวหน้าแผนกเป็นผู้คัดเลือก<br>
+            <strong>5. Distributed Quota:</strong> มีโควต้าจำกัดแบ่งตาม Level
             </p>
         </div>
-    </div>
 
-    <!-- Modal -->
-    <div id="serviceModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title">
-                    <span id="modalIcon">🏥</span>
-                    <span id="modalTitle">บริการ</span>
+        <div class="service-info">
+            <h3>🎯 หลักสูตรยอดนิยม ปี 2026</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div style="padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <strong>🤖 Data Analytics & AI</strong>
+                    <p style="color: #666; font-size: 0.9em; margin-top: 5px;">Python, Machine Learning, Business Intelligence</p>
                 </div>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Content will be loaded dynamically -->
-            </div>
-            
-            <!-- ปุ่มกลับหน้าหลัก -->
-            <div style="text-align: center; padding-top: 20px; border-top: 2px solid #eee;">
-                <button class="back-home-btn" onclick="closeModal()">
-                    <span>🏠</span>
-                    <span>กลับหน้าหลัก</span>
-                </button>
+                <div style="padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <strong>🎨 Soft Skills</strong>
+                    <p style="color: #666; font-size: 0.9em; margin-top: 5px;">Leadership, Strategic Management, EQ</p>
+                </div>
+                <div style="padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <strong>⚙️ Automation & 4IR</strong>
+                    <p style="color: #666; font-size: 0.9em; margin-top: 5px;">Basic 4IR, Automation Modules</p>
+                </div>
+                <div style="padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <strong>📊 Quality Tools</strong>
+                    <p style="color: #666; font-size: 0.9em; margin-top: 5px;">SPC, MSA, FMEA, 8D/RCA</p>
+                </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Service Data
-        const services = {
-            clinic: {
-                icon: '🏥',
-                title: 'คลินิกในบริษัท PRB1',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>คลินิกในบริษัทให้บริการตรวจสุขภาพ รักษาพยาบาล และให้คำปรึกษาด้านสุขภาพ โดยแพทย์และพยาบาลมืออาชีพ</p>
-                    </div>
-                    
-                    <div class="service-info">
-                        <h3>⏰ เวลาทำการ</h3>
-                        <p>• จันทร์ - ศุกร์: 07:00 - 16:00 น.<br>
-                           • เสาร์ - อาทิตย์: 07:00 - 09:00 น.<br>
-                           • กรณีฉุกเฉิน: โทร 1669</p>
-                    </div>
-
-                    <div class="clinic-schedule">
-                        <h3 style="color: #667eea; margin-bottom: 15px;">📅 ตารางออกตรวจแพทย์ประจำคลินิก PRB1</h3>
-                        
-                        <table class="schedule-table">
-                            <thead>
-                                <tr>
-                                    <th>วัน/เวลา</th>
-                                    <th class="day-header">จันทร์<br>Monday</th>
-                                    <th class="day-header">อังคาร<br>Tuesday</th>
-                                    <th class="day-header">พุธ<br>Wednesday</th>
-                                    <th class="day-header">พฤหัสบดี<br>Thursday</th>
-                                    <th class="day-header">ศุกร์<br>Friday</th>
-                                    <th class="day-header">เสาร์<br>Saturday</th>
-                                    <th class="day-header">อาทิตย์<br>Sunday</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="background: #f0f0f0; font-weight: bold;">รอบที่ 1</td>
-                                    <td>
-                                        <div class="doctor-type">อายุรกรรม/ผิวหนัง</div>
-                                        <div class="time-slot">11:00-13:00 น.</div>
-                                    </td>
-                                    <td>
-                                        <div class="doctor-type">กระดูกและข้อ</div>
-                                        <div class="time-slot">10:00-12:00 น.</div>
-                                    </td>
-                                    <td>
-                                        <div class="doctor-type">เวชศาสตร์ครอบครัว</div>
-                                        <div class="time-slot">7:00-9:00 น.</div>
-                                    </td>
-                                    <td>
-                                        <div class="doctor-type">กระดูกและข้อ</div>
-                                        <div class="time-slot">13:30-15:30 น.</div>
-                                    </td>
-                                    <td>
-                                        <div class="doctor-type">กระดูกและข้อ</div>
-                                        <div class="time-slot">10:00-12:00 น.</div>
-                                    </td>
-                                    <td>
-                                        <div class="doctor-type">อายุรกรรม/ผิวหนัง</div>
-                                        <div class="time-slot">7:00-9:00 น.</div>
-                                    </td>
-                                    <td>
-                                        <div class="doctor-type">อายุรกรรม/ผิวหนัง</div>
-                                        <div class="time-slot">7:00-9:00 น.</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="background: #f0f0f0; font-weight: bold;">รอบที่ 2</td>
-                                    <td>-</td>
-                                    <td>
-                                        <div class="doctor-type">อาชีวเวชศาสตร์</div>
-                                        <div class="time-slot">10:00-13:00 น.</div>
-                                    </td>
-                                    <td>
-                                        <div class="doctor-type">อาชีวเวชศาสตร์</div>
-                                        <div class="time-slot">13:00-16:00 น.</div>
-                                    </td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td style="background: #f0f0f0; font-weight: bold;">บริการทั่วไป</td>
-                                    <td colspan="7" style="text-align: left; padding: 15px;">
-                                        <strong>เวชปฏิบัติทั่วไป (General)</strong> - ให้บริการทุกวัน<br>
-                                        • จันทร์-ศุกร์: 08:00-17:00 น.<br>
-                                        • เสาร์-อาทิตย์: 08:00-12:00 น.
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="service-info">
-                        <h3>💊 บริการที่ให้</h3>
-                        <p>• <strong>อายุรกรรม/ผิวหนัง (Medicine/Skin)</strong> - รักษาโรคทั่วไปและโรคผิวหนัง<br>
-                           • <strong>กระดูกและข้อ (Orthopedic)</strong> - รักษาโรคกระดูก ข้อ กล้ามเนื้อ<br>
-                           • <strong>เวชศาสตร์ครอบครัว (Family Medicine)</strong> - ดูแลสุขภาพครบวงจร<br>
-                           • <strong>อาชีวเวชศาสตร์ (OH Doctor)</strong> - ตรวจสุขภาพประจำปี ปรึกษาสุขภาพจากงาน<br>
-                           • <strong>เวชปฏิบัติทั่วไป (General)</strong> - รักษาพยาบาลทั่วไป พยาบาลวิชาชีพ<br>
-                           • ฉีดวัคซีน และออกใบรับรองแพทย์</p>
-                    </div>
-
-                    <div class="service-info" style="background: #fff3cd; border-left: 4px solid #ffc107;">
-                        <h3 style="color: #856404;">📌 หมายเหตุสำคัญ</h3>
-                        <p style="color: #856404;">
-                        • กรุณานัดหมายล่วงหน้า เพื่อความสะดวกในการรับบริการ<br>
-                        • ตารางอาจมีการเปลี่ยนแปลง กรุณาสอบถามที่คลินิกก่อนมาใช้บริการ<br>
-                        • กรณีเร่งด่วน สามารถพบแพทย์เวชปฏิบัติทั่วไปได้ทันที<br>
-                        • ติดต่อคลินิก: ต่อ 1234 (ในเวลาทำการ)</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเชื่อมต่อระบบนัดหมาย...')">
-                            📅 นัดหมายแพทย์
-                        </button>
-                        <button class="secondary-btn" onclick="alert('โทร: 076-xxx-xxx ต่อ 1234')">
-                            📞 ติดต่อคลินิก
-                        </button>
-                    </div>
-                `
-            },
-            hr: {
-                icon: '👥',
-                title: 'HR Services - ทรัพยากรบุคคล',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนก HR ให้บริการเกี่ยวกับการบริหารทรัพยากรบุคคล สวัสดิการ และเอกสารครบวงจร</p>
-                    </div>
-
-                    <div class="hr-menu-section">
-                        <div class="hr-section-title">
-                            <span>ℹ️</span> ข้อมูลส่วนตัวของพนักงาน
-                        </div>
-                        <div class="hr-menu-grid">
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบข้อมูลส่วนตัว...')">
-                                ข้อมูลส่วนตัว
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบสิทธิประโยชน์...')">
-                                สิทธิประโยชน์ในสัญญา
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดฐานะนักศึกษา...')">
-                                ฐานะนักศึกษาระหว่างงาน
-                            </div>
-                            <div class="hr-menu-item hot-badge" onclick="alert('กำลังเปิดระบบคู่มือ HR...')">
-                                คู่มือการใช้งาน HR
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเชื่อมต่อระบบ HR Portal...')">
-                            🏠 ไปยัง HR Portal
-                        </button>
-                        <button class="secondary-btn" onclick="alert('ติดต่อแผนก HR: hr@wd.com')">
-                            📞 ติดต่อ HR
-                        </button>
-                    </div>
-                `
-            },
-            training: {
-                icon: '🎓',
-                title: 'อบรม & พัฒนา',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกอบรมและพัฒนาจัดคอร์สอบรมหลากหลาย เพื่อพัฒนาทักษะและความรู้ของพนักงาน</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเชื่อมต่อระบบลงทะเบียน...')">
-                            📝 ลงทะเบียนอบรม
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดปฏิทินอบรม...')">
-                            📅 ดูปฏิทินอบรม
-                        </button>
-                    </div>
-                `
-            },
-            library: {
-                icon: '📚',
-                title: 'ห้องสมุด',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>ห้องสมุดบริษัทให้บริการยืม-คืนหนังสือ นิตยสาร และมีห้องอ่านหนังสือที่เงียบสงบ</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเชื่อมต่อระบบห้องสมุด...')">
-                            📚 ค้นหาหนังสือ
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดระบบจอง...')">
-                            🪑 จองห้องอ่าน
-                        </button>
-                    </div>
-                `
-            },
-            it: {
-                icon: '💻',
-                title: 'IT Support',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนก IT ให้บริการแก้ไขปัญหาคอมพิวเตอร์ ซอฟต์แวร์ อินเทอร์เน็ต และอุปกรณ์ไอที</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิด IT Service Desk...')">
-                            🎫 แจ้งปัญหา IT
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดคู่มือ...')">
-                            📖 คู่มือการใช้งาน
-                        </button>
-                    </div>
-                `
-            },
-            facilities: {
-                icon: '🏢',
-                title: 'จัดการสิ่งอำนวยความสะดวก',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกสิ่งอำนวยความสะดวกดูแลเกี่ยวกับอาคาร สถานที่ ห้องประชุม และอุปกรณ์ต่างๆ</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบจองห้องประชุม...')">
-                            🏢 จองห้องประชุม
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดแบบฟอร์มแจ้งซ่อม...')">
-                            🔧 แจ้งซ่อม
-                        </button>
-                    </div>
-                `
-            },
-            security: {
-                icon: '🔒',
-                title: 'ความปลอดภัย',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกรักษาความปลอดภัยดูแลเกี่ยวกับการเข้า-ออก ลงทะเบียนแขก และความปลอดภัยทั่วไป</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบลงทะเบียนแขก...')">
-                            👥 ลงทะเบียนแขก
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดแบบฟอร์ม...')">
-                            📝 ขอบัตรผ่าน
-                        </button>
-                    </div>
-                `
-            },
-            finance: {
-                icon: '💰',
-                title: 'การเงิน',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกการเงินให้บริการเกี่ยวกับการเบิกจ่าย เงินยืม และตรวจสอบสถานะทางการเงิน</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบเบิกจ่าย...')">
-                            💰 เบิกค่าใช้จ่าย
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเช็คสถานะ...')">
-                            📊 เช็คสถานะ
-                        </button>
-                    </div>
-                `
-            },
-            procurement: {
-                icon: '🛒',
-                title: 'จัดซื้อ',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกจัดซื้อให้บริการเกี่ยวกับการขออนุมัติจัดซื้อ จัดหา และติดตามสถานะ</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบ PR...')">
-                            📝 สร้าง PR
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเช็คสถานะ...')">
-                            📊 ติดตาม PR/PO
-                        </button>
-                    </div>
-                `
-            },
-            gym: {
-                icon: '💪',
-                title: 'ฟิตเนส',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>ฟิตเนสในบริษัทให้บริการอุปกรณ์ออกกำลังกายที่ทันสมัย พร้อมครูฝึกมืออาชีพ</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบจอง...')">
-                            📅 จองคลาส
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดโปรแกรม...')">
-                            💪 ดูโปรแกรมออกกำลัง
-                        </button>
-                    </div>
-                `
-            }
-        };
-
-        // Open Category Modal
-        function openCategory(categoryId) {
-            const service = services[categoryId];
-            if (service) {
-                document.getElementById('modalIcon').textContent = service.icon;
-                document.getElementById('modalTitle').textContent = service.title;
-                document.getElementById('modalBody').innerHTML = service.content;
-                document.getElementById('serviceModal').style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        // Close Modal
-        function closeModal() {
-            document.getElementById('serviceModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('serviceModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-
-        // Search Function
-        function searchServices() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            
-            if (searchTerm.trim() === '') {
-                alert('กรุณาใส่คำค้นหา');
-                return;
-            }
-
-            const searchMap = {
-                'รถ': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
-                'รถรับส่ง': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
-                'bus': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
-                'อาหาร': () => window.open('https://sakorn564.github.io/food-menu-system/', '_blank'),
-                'แคนทีน': () => window.open('https://sakorn564.github.io/food-menu-system/', '_blank'),
-                'canteen': () => window.open('https://sakorn564.github.io/food-menu-system/', '_blank'),
-                'คลินิก': 'clinic',
-                'โรงพยาบาล': 'clinic',
-                'clinic': 'clinic',
-                'แพทย์': 'clinic',
-                'หมอ': 'clinic',
-                'hr': 'hr',
-                'ทรัพยากรบุคคล': 'hr'
-            };
-
-            const result = searchMap[searchTerm];
-            
-            if (typeof result === 'function') {
-                result();
-            } else if (result) {
-                openCategory(result);
-            } else {
-                alert('ไม่พบบริการที่คุณค้นหา กรุณาลองคำค้นหาอื่น');
-            }
-        }
-
-        // Enter key to search
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchServices();
-            }
-        });
-
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all category cards
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.category-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = `all 0.5s ease ${index * 0.1}s`;
-                observer.observe(card);
-            });
-        });
-
-        console.log('%c🚀 WD Smart Services Hub', 'color: #667eea; font-size: 24px; font-weight: bold;');
-        console.log('%cVersion 1.0.0 | Developed with ❤️', 'color: #666; font-size: 14px;');
-    </script>
-</body>
-</html>
+        
+        <div class="action-buttons">
+            <button class="primary-btn" onclick="alert('กำลังเชื่อมต่อระบบลงทะเบียน LMS...')">
+                📝 ลงทะเบียนอบรม
+            </button>
+            <button class="secondary-btn" onclick="alert('กำลังเปิด Career Explorer (SharePoint)...')">
+                📚 Career Explorer
+            </button>
+        </div>
+    `
+}

@@ -533,6 +533,28 @@
             color: white;
         }
 
+        /* ปุ่มกลับหน้าหลัก */
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .back-home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+        }
+
         /* Footer */
         .footer {
             background: white;
@@ -720,7 +742,7 @@
         <!-- Categories -->
         <h2 class="categories-title">📱 หมวดหมู่บริการทั้งหมด</h2>
         <div class="categories-grid">
-            <!-- Transportation - เปลี่ยนให้เปิดลิงก์โดยตรง -->
+            <!-- Transportation -->
             <div class="category-card" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
                 <div class="category-icon">🚌</div>
                 <div class="category-title">รถรับส่งพนักงาน</div>
@@ -728,7 +750,7 @@
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
-            <!-- Canteen - เปิดลิงก์โดยตรง -->
+            <!-- Canteen -->
             <div class="category-card" onclick="window.open('https://sakorn564.github.io/food-menu-system/', '_blank')">
                 <div class="category-icon">🍽️</div>
                 <div class="category-title">แคนทีน</div>
@@ -875,11 +897,19 @@
             <div class="modal-body" id="modalBody">
                 <!-- Content will be loaded dynamically -->
             </div>
+            
+            <!-- ปุ่มกลับหน้าหลัก -->
+            <div style="text-align: center; padding-top: 20px; border-top: 2px solid #eee;">
+                <button class="back-home-btn" onclick="closeModal()">
+                    <span>🏠</span>
+                    <span>กลับหน้าหลัก</span>
+                </button>
+            </div>
         </div>
     </div>
 
     <script>
-        // Service Data (ลบ bus และ canteen ออก เพราะเปิดลิงก์โดยตรง)
+        // Service Data
         const services = {
             clinic: {
                 icon: '🏥',
@@ -1031,111 +1061,6 @@
                         </div>
                     </div>
 
-                    <div class="hr-menu-section">
-                        <div class="hr-section-title">
-                            <span>🎯</span> ตำแหน่งเพื่องานของพนักงาน
-                        </div>
-                        <div class="hr-menu-grid">
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบสลับงานเข้อน...')">
-                                สลับงานเข้อนรุ่น
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดกลองสารหรือ Workday...')">
-                                กลองสารหรือ Workday
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบเปลี่ยนยินดีรับจริงใน...')">
-                                เปลี่ยนยินดีรับจริงใน
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบชี้นาถอาทำงานระหว่างบุคคล...')">
-                                ชี้นาถอาทำงานระหว่างบุคคล
-                            </div>
-                            <div class="hr-menu-item hot-badge" onclick="alert('กำลังเปิดระบบจัดจำหนพนักงาน...')">
-                                จัดจำหนพนักงาน
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบหมับยนจารางงาน...')">
-                                หมับยนจารางงาน
-                            </div>
-                            <div class="hr-menu-item new-badge" onclick="alert('กำลังเปิดระบบ HR News...')">
-                                HR News
-                            </div>
-                            <div class="hr-menu-item new-badge" onclick="alert('กำลังเปิดระบบ Fitness Center Liability Waiver...')">
-                                Fitness Center Liability Waiver
-                            </div>
-                            <div class="hr-menu-item new-badge" onclick="alert('กำลังเปิดระบบ HR Form...')">
-                                HR Form
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hr-menu-section">
-                        <div class="hr-section-title">
-                            <span>🏭</span> ทำงานบริษัทงาน
-                        </div>
-                        <div class="hr-menu-grid">
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบนำทางในเครือบริเวณ...')">
-                                นำทางในเครือบริเวณ
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบสำบริเลืดืการับจริงงวน...')">
-                                สำบริเลืดืการับจริงงวน
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hr-menu-section">
-                        <div class="hr-section-title">
-                            <span>🌐</span> ข้อมูลในประเทศ
-                        </div>
-                        <div class="hr-menu-grid">
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบนำทางในเขตวงงานะวง...')">
-                                นำทางในเขตวงงานะวง
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบนำกริดประกริษังงรอน...')">
-                                นำกริดประกริษังงรอน
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบย้อมลักษณาจะของการกบละของการตอบือ...')">
-                                ย้อมลักษณาจะของการกบละของการตอบือ
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบการจัดบยดหน้งอบชิริจัน...')">
-                                การจัดบยดหน้งอบชิริจัน
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบบริกันทับ อันดับน...')">
-                                บริกันทับ อันดับน
-                            </div>
-                            <div class="hr-menu-item new-badge" onclick="alert('กำลังเปิดระบบ SCB PVD Online...')">
-                                SCB PVD Online
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบรายเหดยนการ้งอยลีรอบที่งดะกำจามซงาน...')">
-                                รายเหดยนการ้งอยลีรอบที่งดะกำจามซงาน
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบระบบทศดสถานงรนขณจัน...')">
-                                ระบบทศดสถานงรนขณจัน
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบ CI-QCC Kaizen.6s...')">
-                                CI-QCC Kaizen.6s
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบ RBA Code of Conduct_Knowledge...')">
-                                RBA Code of Conduct_Knowledge
-                            </div>
-                            <div class="hr-menu-item new-badge" onclick="alert('กำลังเปิดระบบ eVoiceOut...')">
-                                eVoiceOut
-                            </div>
-                            <div class="hr-menu-item new-badge" onclick="alert('กำลังเปิดระบบ ITAS (Time Attendance)...')">
-                                ITAS (Time Attendance)
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบย้อมลักษารหละ็อางทับงรองามะงาน...')">
-                                ย้อมลักษารหละ็อางทับงรองามะงาน
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบสลับงันเข้อนรุน ADP...')">
-                                สลับงันเข้อนรุน ADP
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบขยใจีลักษุราติลงเศม...')">
-                                ขยใจีลักษุราติลงเศม
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบ EPES (ผลงานอรจัน)...')">
-                                EPES (ผลงานอรจัน)
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="action-buttons">
                         <button class="primary-btn" onclick="alert('กำลังเชื่อมต่อระบบ HR Portal...')">
                             🏠 ไปยัง HR Portal
@@ -1153,16 +1078,6 @@
                     <div class="service-info">
                         <h3>📋 รายละเอียดบริการ</h3>
                         <p>แผนกอบรมและพัฒนาจัดคอร์สอบรมหลากหลาย เพื่อพัฒนาทักษะและความรู้ของพนักงาน</p>
-                    </div>
-                    
-                    <div class="service-info">
-                        <h3>📚 คอร์สยอดนิยม</h3>
-                        <p>• Leadership Development Program<br>
-                           • Digital Skills Workshop<br>
-                           • English for Communication<br>
-                           • Project Management<br>
-                           • Quality Management System<br>
-                           • Safety & Health Training</p>
                     </div>
                     
                     <div class="action-buttons">
@@ -1364,9 +1279,9 @@
             const result = searchMap[searchTerm];
             
             if (typeof result === 'function') {
-                result(); // เปิดลิงก์ภายนอก
+                result();
             } else if (result) {
-                openCategory(result); // เปิด Modal
+                openCategory(result);
             } else {
                 alert('ไม่พบบริการที่คุณค้นหา กรุณาลองคำค้นหาอื่น');
             }

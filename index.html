@@ -283,6 +283,10 @@
             background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         }
 
+        .quick-action-btn:nth-child(6) {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+        }
+
         /* Announcements */
         .announcements {
             background: white;
@@ -792,6 +796,9 @@
                 <button class="quick-action-btn" onclick="openCategory('training')">
                     🎓 ลงทะเบียนอบรม
                 </button>
+                <button class="quick-action-btn" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
+                    💬 ร้องเรียน/ชมเชย
+                </button>
             </div>
         </div>
 
@@ -822,27 +829,11 @@
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
-            <!-- Training - เปลี่ยนให้เปิด Modal -->
+            <!-- Training -->
             <div class="category-card" onclick="openCategory('training')">
                 <div class="category-icon">🎓</div>
                 <div class="category-title">อบรม & พัฒนา</div>
                 <div class="category-desc">คอร์สอบรม ลงทะเบียน และติดตามผล</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Library -->
-            <div class="category-card" onclick="openCategory('library')">
-                <div class="category-icon">📚</div>
-                <div class="category-title">ห้องสมุด</div>
-                <div class="category-desc">ค้นหาหนังสือ ยืม-คืน และจองห้องอ่าน</div>
-                <span class="category-badge badge-new">✨ ใหม่</span>
-            </div>
-
-            <!-- IT Support -->
-            <div class="category-card" onclick="openCategory('it')">
-                <div class="category-icon">💻</div>
-                <div class="category-title">IT Support</div>
-                <div class="category-desc">แจ้งปัญหา ขอใช้ซอฟต์แวร์ และคู่มือ</div>
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
@@ -854,43 +845,11 @@
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
-            <!-- Facilities -->
-            <div class="category-card" onclick="openCategory('facilities')">
-                <div class="category-icon">🏢</div>
-                <div class="category-title">จัดการสิ่งอำนวยความสะดวก</div>
-                <div class="category-desc">แจ้งซ่อม จองห้องประชุม และขอใช้อุปกรณ์</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Security -->
-            <div class="category-card" onclick="openCategory('security')">
-                <div class="category-icon">🔒</div>
-                <div class="category-title">ความปลอดภัย</div>
-                <div class="category-desc">ขอบัตรผ่าน ลงทะเบียนแขก และรายงาน</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Finance -->
-            <div class="category-card" onclick="openCategory('finance')">
-                <div class="category-icon">💰</div>
-                <div class="category-title">การเงิน</div>
-                <div class="category-desc">เบิกค่าใช้จ่าย ขอเงินยืม และเช็คสถานะ</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Procurement -->
-            <div class="category-card" onclick="openCategory('procurement')">
-                <div class="category-icon">🛒</div>
-                <div class="category-title">จัดซื้อ</div>
-                <div class="category-desc">ขออนุมัติจัดซื้อ ติดตามสถานะ</div>
-                <span class="category-badge">✓ พร้อมใช้</span>
-            </div>
-
-            <!-- Gym -->
-            <div class="category-card" onclick="openCategory('gym')">
-                <div class="category-icon">💪</div>
-                <div class="category-title">ฟิตเนส</div>
-                <div class="category-desc">จองเวลาใช้ ดูคลาส และโปรแกรมออกกำลัง</div>
+            <!-- ✨ หัวข้อใหม่: ระบบเสนอแนะ/ร้องเรียน -->
+            <div class="category-card" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
+                <div class="category-icon">💬</div>
+                <div class="category-title">เสนอแนะ/ร้องเรียน/ชมเชย</div>
+                <div class="category-desc">ส่งข้อเสนอแนะ ร้องเรียน หรือชมเชยบริการ</div>
                 <span class="category-badge badge-new">✨ ใหม่</span>
             </div>
         </div>
@@ -935,7 +894,7 @@
             </div>
             <p>© 2025 Western Digital Corporation. All Rights Reserved.</p>
             <p style="font-size: 0.9em; margin-top: 10px; color: #999;">
-                Version 1.0.0 • Last Updated: 2025-01-27
+                Version 1.1.0 • Last Updated: 2025-01-27
             </p>
         </div>
     </div>
@@ -1174,139 +1133,6 @@
                         </button>
                     </div>
                 `
-            },
-            library: {
-                icon: '📚',
-                title: 'ห้องสมุด',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>ห้องสมุดบริษัทให้บริการยืม-คืนหนังสือ นิตยสาร และมีห้องอ่านหนังสือที่เงียบสงบ</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเชื่อมต่อระบบห้องสมุด...')">
-                            📚 ค้นหาหนังสือ
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดระบบจอง...')">
-                            🪑 จองห้องอ่าน
-                        </button>
-                    </div>
-                `
-            },
-            it: {
-                icon: '💻',
-                title: 'IT Support',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนก IT ให้บริการแก้ไขปัญหาคอมพิวเตอร์ ซอฟต์แวร์ อินเทอร์เน็ต และอุปกรณ์ไอที</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิด IT Service Desk...')">
-                            🎫 แจ้งปัญหา IT
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดคู่มือ...')">
-                            📖 คู่มือการใช้งาน
-                        </button>
-                    </div>
-                `
-            },
-            facilities: {
-                icon: '🏢',
-                title: 'จัดการสิ่งอำนวยความสะดวก',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกสิ่งอำนวยความสะดวกดูแลเกี่ยวกับอาคาร สถานที่ ห้องประชุม และอุปกรณ์ต่างๆ</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบจองห้องประชุม...')">
-                            🏢 จองห้องประชุม
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดแบบฟอร์มแจ้งซ่อม...')">
-                            🔧 แจ้งซ่อม
-                        </button>
-                    </div>
-                `
-            },
-            security: {
-                icon: '🔒',
-                title: 'ความปลอดภัย',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกรักษาความปลอดภัยดูแลเกี่ยวกับการเข้า-ออก ลงทะเบียนแขก และความปลอดภัยทั่วไป</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบลงทะเบียนแขก...')">
-                            👥 ลงทะเบียนแขก
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดแบบฟอร์ม...')">
-                            📝 ขอบัตรผ่าน
-                        </button>
-                    </div>
-                `
-            },
-            finance: {
-                icon: '💰',
-                title: 'การเงิน',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกการเงินให้บริการเกี่ยวกับการเบิกจ่าย เงินยืม และตรวจสอบสถานะทางการเงิน</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบเบิกจ่าย...')">
-                            💰 เบิกค่าใช้จ่าย
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเช็คสถานะ...')">
-                            📊 เช็คสถานะ
-                        </button>
-                    </div>
-                `
-            },
-            procurement: {
-                icon: '🛒',
-                title: 'จัดซื้อ',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนกจัดซื้อให้บริการเกี่ยวกับการขออนุมัติจัดซื้อ จัดหา และติดตามสถานะ</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบ PR...')">
-                            📝 สร้าง PR
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเช็คสถานะ...')">
-                            📊 ติดตาม PR/PO
-                        </button>
-                    </div>
-                `
-            },
-            gym: {
-                icon: '💪',
-                title: 'ฟิตเนส',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>ฟิตเนสในบริษัทให้บริการอุปกรณ์ออกกำลังกายที่ทันสมัย พร้อมครูฝึกมืออาชีพ</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเปิดระบบจอง...')">
-                            📅 จองคลาส
-                        </button>
-                        <button class="secondary-btn" onclick="alert('กำลังเปิดโปรแกรม...')">
-                            💪 ดูโปรแกรมออกกำลัง
-                        </button>
-                    </div>
-                `
             }
         };
 
@@ -1336,7 +1162,7 @@
             }
         }
 
-        // Search Function - อัปเดตให้รองรับคำค้นหา "อบรม"
+        // Search Function
         function searchServices() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             
@@ -1359,13 +1185,16 @@
                 'หมอ': 'clinic',
                 'hr': 'hr',
                 'ทรัพยากรบุคคล': 'hr',
-                // อัปเดตการค้นหาสำหรับอบรม - เปิด Modal แทน
                 'อบรม': 'training',
                 'training': 'training',
                 'เทรนนิ่ง': 'training',
                 'คอร์ส': 'training',
                 'พัฒนา': 'training',
-                'เรียน': 'training'
+                'เรียน': 'training',
+                'ร้องเรียน': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
+                'ชมเชย': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
+                'เสนอแนะ': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
+                'feedback': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')
             };
 
             const result = searchMap[searchTerm];
@@ -1413,7 +1242,7 @@
         });
 
         console.log('%c🚀 WWC Smart Services Hub', 'color: #667eea; font-size: 24px; font-weight: bold;');
-        console.log('%cVersion 1.0.1 | Developed with ❤️', 'color: #666; font-size: 14px;');
+        console.log('%cVersion 1.1.0 | Developed with ❤️', 'color: #666; font-size: 14px;');
     </script>
 </body>
 </html>

@@ -287,6 +287,10 @@
             background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
         }
 
+        .quick-action-btn:nth-child(7) {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
         /* Announcements */
         .announcements {
             background: white;
@@ -709,6 +713,80 @@
             color: #333;
         }
 
+        /* KPI Cards - สไตล์พิเศษสำหรับ KPI Input */
+        .kpi-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transition: transform 0.5s ease;
+        }
+
+        .kpi-card:hover::before {
+            transform: translate(-25%, -25%);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .kpi-card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kpi-card-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kpi-card-desc {
+            font-size: 0.95em;
+            opacity: 0.9;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kpi-card:nth-child(1) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .kpi-card:nth-child(2) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .kpi-card:nth-child(3) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .header h1 {
@@ -757,6 +835,10 @@
             .system-selection {
                 grid-template-columns: 1fr;
             }
+
+            .kpi-card-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -772,7 +854,7 @@
         <!-- Search Bar -->
         <div class="search-container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="🔍 ค้นหาบริการที่ต้องการ... (เช่น รถรับส่ง, อาหาร, คลินิก, อบรม)">
+                <input type="text" id="searchInput" placeholder="🔍 ค้นหาบริการที่ต้องการ... (เช่น รถรับส่ง, อาหาร, คลินิก, อบรม, KPI)">
                 <button class="search-btn" onclick="searchServices()">ค้นหา</button>
             </div>
         </div>
@@ -798,6 +880,9 @@
                 </button>
                 <button class="quick-action-btn" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
                     💬 ร้องเรียน/ชมเชย
+                </button>
+                <button class="quick-action-btn" onclick="openCategory('kpi')">
+                    📊 KPI Input
                 </button>
             </div>
         </div>
@@ -845,11 +930,19 @@
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
-            <!-- ✨ หัวข้อใหม่: ระบบเสนอแนะ/ร้องเรียน -->
+            <!-- Feedback -->
             <div class="category-card" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
                 <div class="category-icon">💬</div>
                 <div class="category-title">เสนอแนะ/ร้องเรียน/ชมเชย</div>
                 <div class="category-desc">ส่งข้อเสนอแนะ ร้องเรียน หรือชมเชยบริการ</div>
+                <span class="category-badge badge-new">✨ ใหม่</span>
+            </div>
+
+            <!-- ✨ KPI Input -->
+            <div class="category-card" onclick="openCategory('kpi')">
+                <div class="category-icon">📊</div>
+                <div class="category-title">KPI Input</div>
+                <div class="category-desc">บันทึก SGC, KAIZEN, Contam Good Catch</div>
                 <span class="category-badge badge-new">✨ ใหม่</span>
             </div>
         </div>
@@ -894,7 +987,7 @@
             </div>
             <p>© 2025 Western Digital Corporation. All Rights Reserved.</p>
             <p style="font-size: 0.9em; margin-top: 10px; color: #999;">
-                Version 1.1.0 • Last Updated: 2025-01-27
+                Version 1.2.0 • Last Updated: 2025-01-27
             </p>
         </div>
     </div>
@@ -1133,6 +1226,60 @@
                         </button>
                     </div>
                 `
+            },
+            kpi: {
+                icon: '📊',
+                title: 'KPI Input - บันทึกผลงาน',
+                content: `
+                    <div class="service-info">
+                        <h3>📋 ระบบบันทึก KPI</h3>
+                        <p>เลือกระบบที่ต้องการบันทึกข้อมูล - SGC, KAIZEN, หรือ Contam Good Catch</p>
+                    </div>
+
+                    <div class="kpi-card-grid">
+                        <!-- SGC -->
+                        <div class="kpi-card" onclick="window.open('https://app.smartsheet.com/b/publish?EQBCT=abb88d189f554e83b9a94c7ef66604b0', '_blank')">
+                            <div class="kpi-card-icon">🎯</div>
+                            <div class="kpi-card-title">SGC</div>
+                            <div class="kpi-card-desc">
+                                Small Group Circle<br>
+                                บันทึกกิจกรรมกลุ่มย่อย<br>
+                                และโครงการปรับปรุงคุณภาพ
+                            </div>
+                        </div>
+
+                        <!-- KAIZEN -->
+                        <div class="kpi-card" onclick="window.open('https://app.smartsheet.com/b/form/019b2ba9e0a07493b535994839137d3c', '_blank')">
+                            <div class="kpi-card-icon">💡</div>
+                            <div class="kpi-card-title">KAIZEN</div>
+                            <div class="kpi-card-desc">
+                                Continuous Improvement<br>
+                                ส่งข้อเสนอแนะการปรับปรุง<br>
+                                และพัฒนากระบวนการทำงาน
+                            </div>
+                        </div>
+
+                        <!-- Contam Good Catch -->
+                        <div class="kpi-card" onclick="window.open('https://app.smartsheet.com/b/form/fca7a24abf3f422d96ea0a668d972aff', '_blank')">
+                            <div class="kpi-card-icon">🛡️</div>
+                            <div class="kpi-card-title">Contam Good Catch</div>
+                            <div class="kpi-card-desc">
+                                FOD Prevention<br>
+                                รายงานการพบสิ่งแปลกปลอม<br>
+                                และการป้องกันการปนเปื้อน
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="service-info" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
+                        <h3 style="color: #2e7d32;">✅ คำแนะนำการใช้งาน</h3>
+                        <p style="color: #2e7d32;">
+                        • <strong>SGC</strong> - ใช้สำหรับบันทึกกิจกรรม Small Group Circle<br>
+                        • <strong>KAIZEN</strong> - ส่งไอเดียการปรับปรุงกระบวนการทำงาน<br>
+                        • <strong>Contam Good Catch</strong> - รายงานสิ่งแปลกปลอมที่พบเจอ<br>
+                        • ข้อมูลจะถูกส่งไปยังระบบ Smartsheet โดยอัตโนมัติ</p>
+                    </div>
+                `
             }
         };
 
@@ -1194,7 +1341,12 @@
                 'ร้องเรียน': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
                 'ชมเชย': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
                 'เสนอแนะ': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
-                'feedback': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')
+                'feedback': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
+                'kpi': 'kpi',
+                'sgc': 'kpi',
+                'kaizen': 'kpi',
+                'contam': 'kpi',
+                'good catch': 'kpi'
             };
 
             const result = searchMap[searchTerm];
@@ -1242,7 +1394,7 @@
         });
 
         console.log('%c🚀 WWC Smart Services Hub', 'color: #667eea; font-size: 24px; font-weight: bold;');
-        console.log('%cVersion 1.1.0 | Developed with ❤️', 'color: #666; font-size: 14px;');
+        console.log('%cVersion 1.2.0 | Developed with ❤️', 'color: #666; font-size: 14px;');
     </script>
 </body>
 </html>

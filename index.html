@@ -287,10 +287,6 @@
             background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
         }
 
-        .quick-action-btn:nth-child(7) {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-
         /* Announcements */
         .announcements {
             background: white;
@@ -437,73 +433,6 @@
             line-height: 1.6;
         }
 
-        /* HR Menu Grid */
-        .hr-menu-section {
-            margin: 20px 0;
-        }
-
-        .hr-section-title {
-            color: #667eea;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            padding: 10px;
-            background: #f0f4ff;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .hr-menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .hr-menu-item {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 15px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .hr-menu-item:hover {
-            border-color: #667eea;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
-        }
-
-        .hr-menu-item.new-badge::after {
-            content: 'NEW';
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff6b6b;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.65em;
-            font-weight: bold;
-        }
-
-        .hr-menu-item.hot-badge::after {
-            content: 'HOT';
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ff9800;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.65em;
-            font-weight: bold;
-        }
-
         .action-buttons {
             display: flex;
             gap: 15px;
@@ -545,7 +474,6 @@
             color: white;
         }
 
-        /* ปุ่มกลับหน้าหลัก */
         .back-home-btn {
             display: inline-flex;
             align-items: center;
@@ -593,6 +521,78 @@
 
         .footer-links a:hover {
             color: #764ba2;
+        }
+
+        /* Stats Widget */
+        .stats-widget {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            min-width: 280px;
+            z-index: 999;
+            animation: slideInFromRight 0.5s ease;
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .stats-widget:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            transform: translateY(-3px);
+            transition: all 0.3s ease;
+        }
+
+        .stats-header {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+
+        .stats-content {
+            font-size: 0.95em;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            font-size: 1.3em;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         /* Clinic Schedule Table */
@@ -650,70 +650,23 @@
             color: #333;
         }
 
-        /* System Selection Cards */
-        .system-selection {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        /* Canteen iFrame */
+        .canteen-iframe-container {
+            width: 100%;
+            height: 80vh;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             margin: 20px 0;
         }
 
-        .system-card {
-            background: white;
-            border: 3px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+        .canteen-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
-        .system-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-
-        .system-card .system-icon {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-        }
-
-        .system-card .system-name {
-            font-size: 1.4em;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .system-card .system-desc {
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .system-card .system-badge {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-
-        .badge-official {
-            background: #28a745;
-            color: white;
-        }
-
-        .badge-legacy {
-            background: #ffc107;
-            color: #333;
-        }
-
-        /* KPI Cards - สไตล์พิเศษสำหรับ KPI Input */
+        /* KPI Cards */
         .kpi-card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -732,21 +685,6 @@
             overflow: hidden;
         }
 
-        .kpi-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            transition: transform 0.5s ease;
-        }
-
-        .kpi-card:hover::before {
-            transform: translate(-25%, -25%);
-        }
-
         .kpi-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
@@ -755,24 +693,18 @@
         .kpi-card-icon {
             font-size: 3em;
             margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
         }
 
         .kpi-card-title {
             font-size: 1.5em;
             font-weight: 700;
             margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
         }
 
         .kpi-card-desc {
             font-size: 0.95em;
             opacity: 0.9;
             line-height: 1.6;
-            position: relative;
-            z-index: 1;
         }
 
         .kpi-card:nth-child(1) {
@@ -787,8 +719,86 @@
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
         }
 
+        /* System Selection */
+        .system-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .system-card {
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .system-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .system-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+        }
+
+        .system-name {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .system-desc {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .system-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .badge-official {
+            background: #28a745;
+            color: white;
+        }
+
+        .badge-legacy {
+            background: #ffc107;
+            color: #333;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            .stats-widget {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                min-width: 200px;
+                padding: 15px;
+            }
+
+            .stats-header {
+                font-size: 1.1em;
+            }
+
+            .stat-value {
+                font-size: 1.1em;
+            }
+
             .header h1 {
                 font-size: 1.8em;
             }
@@ -815,20 +825,11 @@
                 flex-direction: column;
             }
 
-            .hr-menu-grid {
+            .quick-actions-grid {
                 grid-template-columns: 1fr;
             }
 
-            .schedule-table {
-                font-size: 0.8em;
-            }
-
-            .schedule-table th,
-            .schedule-table td {
-                padding: 8px 4px;
-            }
-
-            .quick-actions-grid {
+            .kpi-card-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -836,14 +837,75 @@
                 grid-template-columns: 1fr;
             }
 
-            .kpi-card-grid {
-                grid-template-columns: 1fr;
+            .schedule-table {
+                font-size: 0.75em;
+            }
+
+            .schedule-table th,
+            .schedule-table td {
+                padding: 8px 4px;
+            }
+
+            .canteen-iframe-container {
+                height: 60vh;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Stats Widget -->
+        <div class="stats-widget" id="statsWidget">
+            <div class="stats-header">
+                <span>📊</span>
+                <span>สถิติการใช้งาน</span>
+            </div>
+            <div class="stats-content">
+                <div class="stat-row">
+                    <span class="stat-label">
+                        <span>👥</span>
+                        <span>ผู้เข้าชมทั้งหมด</span>
+                    </span>
+                    <span class="stat-value" id="totalViews">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">
+                        <span>🚌</span>
+                        <span>จองรถ</span>
+                    </span>
+                    <span class="stat-value" id="busClicks">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">
+                        <span>🍽️</span>
+                        <span>ดูเมนู</span>
+                    </span>
+                    <span class="stat-value" id="foodClicks">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">
+                        <span>🏥</span>
+                        <span>คลินิก</span>
+                    </span>
+                    <span class="stat-value" id="clinicClicks">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">
+                        <span>🎓</span>
+                        <span>อบรม</span>
+                    </span>
+                    <span class="stat-value" id="trainingClicks">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">
+                        <span>📊</span>
+                        <span>KPI</span>
+                    </span>
+                    <span class="stat-value" id="kpiClicks">0</span>
+                </div>
+            </div>
+        </div>
+
         <!-- Header -->
         <div class="header">
             <h1>🚀 WWC Smart Services Hub</h1>
@@ -863,25 +925,22 @@
         <div class="quick-actions">
             <h2>⚡ เมนูลัด (Quick Actions)</h2>
             <div class="quick-actions-grid">
-                <button class="quick-action-btn" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
+                <button class="quick-action-btn" onclick="trackAndOpen('bus', 'https://sakorn564.github.io/wd-bus-system/')">
                     🚌 จองรถรับส่ง
                 </button>
-                <button class="quick-action-btn" onclick="window.open('https://sakorn564.github.io/food-menu-system/', '_blank')">
+                <button class="quick-action-btn" onclick="trackAndOpenCategory('food', 'food')">
                     🍽️ ดูเมนูวันนี้
                 </button>
-                <button class="quick-action-btn" onclick="openCategory('clinic')">
+                <button class="quick-action-btn" onclick="trackAndOpenCategory('clinic', 'clinic')">
                     🏥 นัดหมายคลินิก
                 </button>
-                <button class="quick-action-btn" onclick="openCategory('hr')">
-                    👥 HR Services
-                </button>
-                <button class="quick-action-btn" onclick="openCategory('training')">
+                <button class="quick-action-btn" onclick="trackAndOpenCategory('training', 'training')">
                     🎓 ลงทะเบียนอบรม
                 </button>
-                <button class="quick-action-btn" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
+                <button class="quick-action-btn" onclick="trackAndOpen('feedback', 'https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83')">
                     💬 ร้องเรียน/ชมเชย
                 </button>
-                <button class="quick-action-btn" onclick="openCategory('kpi')">
+                <button class="quick-action-btn" onclick="trackAndOpenCategory('kpi', 'kpi')">
                     📊 KPI Input
                 </button>
             </div>
@@ -890,56 +949,42 @@
         <!-- Categories -->
         <h2 class="categories-title">📱 หมวดหมู่บริการทั้งหมด</h2>
         <div class="categories-grid">
-            <!-- Transportation -->
-            <div class="category-card" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
+            <div class="category-card" onclick="trackAndOpen('bus', 'https://sakorn564.github.io/wd-bus-system/')">
                 <div class="category-icon">🚌</div>
                 <div class="category-title">รถรับส่งพนักงาน</div>
                 <div class="category-desc">ตรวจสอบเวลา เส้นทาง และจองรถรับส่ง</div>
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
-            <!-- Canteen -->
-            <div class="category-card" onclick="window.open('https://sakorn564.github.io/food-menu-system/', '_blank')">
+            <div class="category-card" onclick="trackAndOpenCategory('food', 'food')">
                 <div class="category-icon">🍽️</div>
                 <div class="category-title">แคนทีน</div>
                 <div class="category-desc">เมนูอาหาร ราคา และสั่งอาหารล่วงหน้า</div>
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
-            <!-- Clinic -->
-            <div class="category-card" onclick="openCategory('clinic')">
+            <div class="category-card" onclick="trackAndOpenCategory('clinic', 'clinic')">
                 <div class="category-icon">🏥</div>
                 <div class="category-title">คลินิกในบริษัท</div>
                 <div class="category-desc">นัดหมายแพทย์ พยาบาล และขอใบรับรอง</div>
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
-            <!-- Training -->
-            <div class="category-card" onclick="openCategory('training')">
+            <div class="category-card" onclick="trackAndOpenCategory('training', 'training')">
                 <div class="category-icon">🎓</div>
                 <div class="category-title">อบรม & พัฒนา</div>
                 <div class="category-desc">คอร์สอบรม ลงทะเบียน และติดตามผล</div>
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
-            <!-- HR Services -->
-            <div class="category-card" onclick="openCategory('hr')">
-                <div class="category-icon">👥</div>
-                <div class="category-title">HR Services</div>
-                <div class="category-desc">ใบลา เงินเดือน สวัสดิการ และเอกสารครบวงจร</div>
-                <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
-            </div>
-
-            <!-- Feedback -->
-            <div class="category-card" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
+            <div class="category-card" onclick="trackAndOpen('feedback', 'https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83')">
                 <div class="category-icon">💬</div>
                 <div class="category-title">เสนอแนะ/ร้องเรียน/ชมเชย</div>
                 <div class="category-desc">ส่งข้อเสนอแนะ ร้องเรียน หรือชมเชยบริการ</div>
                 <span class="category-badge badge-new">✨ ใหม่</span>
             </div>
 
-            <!-- ✨ KPI Input -->
-            <div class="category-card" onclick="openCategory('kpi')">
+            <div class="category-card" onclick="trackAndOpenCategory('kpi', 'kpi')">
                 <div class="category-icon">📊</div>
                 <div class="category-title">KPI Input</div>
                 <div class="category-desc">บันทึก SGC, KAIZEN, Contam Good Catch</div>
@@ -987,7 +1032,7 @@
             </div>
             <p>© 2025 Western Digital Corporation. All Rights Reserved.</p>
             <p style="font-size: 0.9em; margin-top: 10px; color: #999;">
-                Version 1.2.0 • Last Updated: 2025-01-27
+                Version 1.8.0 • Last Updated: 2025-01-27
             </p>
         </div>
     </div>
@@ -1002,11 +1047,8 @@
                 </div>
                 <button class="close-btn" onclick="closeModal()">&times;</button>
             </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Content will be loaded dynamically -->
-            </div>
+            <div class="modal-body" id="modalBody"></div>
             
-            <!-- ปุ่มกลับหน้าหลัก -->
             <div style="text-align: center; padding-top: 20px; border-top: 2px solid #eee;">
                 <button class="back-home-btn" onclick="closeModal()">
                     <span>🏠</span>
@@ -1017,7 +1059,85 @@
     </div>
 
     <script>
-        // Service Data
+        // ===== ANALYTICS SYSTEM =====
+        
+        const STATS_KEY = 'wwc_stats';
+        
+        function loadStats() {
+            const stats = localStorage.getItem(STATS_KEY);
+            if (stats) {
+                return JSON.parse(stats);
+            }
+            return {
+                totalViews: 0,
+                busClicks: 0,
+                foodClicks: 0,
+                clinicClicks: 0,
+                trainingClicks: 0,
+                kpiClicks: 0,
+                feedbackClicks: 0
+            };
+        }
+        
+        function saveStats(stats) {
+            localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+        }
+        
+        function updateStatsDisplay() {
+            const stats = loadStats();
+            document.getElementById('totalViews').textContent = formatNumber(stats.totalViews);
+            document.getElementById('busClicks').textContent = formatNumber(stats.busClicks);
+            document.getElementById('foodClicks').textContent = formatNumber(stats.foodClicks);
+            document.getElementById('clinicClicks').textContent = formatNumber(stats.clinicClicks);
+            document.getElementById('trainingClicks').textContent = formatNumber(stats.trainingClicks);
+            document.getElementById('kpiClicks').textContent = formatNumber(stats.kpiClicks);
+        }
+        
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+        
+        function trackEvent(category) {
+            const stats = loadStats();
+            
+            if (category === 'view') {
+                stats.totalViews++;
+            } else if (category === 'bus') {
+                stats.busClicks++;
+            } else if (category === 'food') {
+                stats.foodClicks++;
+            } else if (category === 'clinic') {
+                stats.clinicClicks++;
+            } else if (category === 'training') {
+                stats.trainingClicks++;
+            } else if (category === 'kpi') {
+                stats.kpiClicks++;
+            } else if (category === 'feedback') {
+                stats.feedbackClicks++;
+            }
+            
+            saveStats(stats);
+            updateStatsDisplay();
+            
+            console.log('📊 Tracked:', category, '| Total:', stats.totalViews);
+        }
+        
+        function trackAndOpen(category, url) {
+            trackEvent(category);
+            window.open(url, '_blank');
+        }
+        
+        function trackAndOpenCategory(category, modalId) {
+            trackEvent(category);
+            openCategory(modalId);
+        }
+        
+        // ===== SERVICE DATA =====
         const services = {
             clinic: {
                 icon: '🏥',
@@ -1140,150 +1260,108 @@
                     </div>
                 `
             },
+            food: {
+                icon: '🍽️',
+                title: 'แคนทีน - เมนูอาหารประจำวัน',
+                content: `
+                    <div class="service-info" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
+                        <h3 style="color: #2e7d32;">🔄 อัพเดทแบบ Real-time</h3>
+                        <p style="color: #2e7d32;">
+                        <strong>เมนูด้านล่างจะอัพเดทอัตโนมัติตามระบบ</strong><br>
+                        ไม่ต้องแก้ไขโค้ดเมื่อมีการเปลี่ยนแปลงเมนู
+                        </p>
+                    </div>
+
+                    <div class="canteen-iframe-container">
+                        <iframe 
+                            src="http://10.144.76.42/food-menu/index.php" 
+                            class="canteen-iframe"
+                            title="เมนูอาหารประจำวัน"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+
+                    <div class="service-info">
+                        <h3>⏰ เวลาทำการ</h3>
+                        <p>• อาหารเช้า: 06:30 - 08:30 น.<br>
+                           • อาหารกลางวัน: 11:00 - 13:00 น.<br>
+                           • อาหารเย็น: 17:00 - 19:00 น.</p>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="primary-btn" onclick="window.open('http://10.144.76.42/food-menu/index.php', '_blank')">
+                            🌐 เปิดหน้าเต็ม
+                        </button>
+                        <button class="secondary-btn" onclick="alert('ติดต่อแคนทีน: ต่อ 5678')">
+                            📞 ติดต่อแคนทีน
+                        </button>
+                    </div>
+                `
+            },
             training: {
                 icon: '🎓',
                 title: 'อบรม & พัฒนาทักษะ',
                 content: `
                     <div class="service-info">
                         <h3>📋 ระบบอบรมและพัฒนาทักษะ</h3>
-                        <p>เลือกระบบที่ต้องการใช้งาน - มีทั้งระบบใหม่และระบบเดิมให้เลือก</p>
+                        <p>เลือกระบบที่ต้องการใช้งาน</p>
                     </div>
 
                     <div class="system-selection">
-                        <!-- Skill Development System (ระบบใหม่) -->
-                        <div class="system-card" onclick="window.open('https://caa-prd-auth.edge.wdc.com/realms/CAA/protocol/openid-connect/auth?client_id=hr_skill_development&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fpeople-skill-development-system.edge.wdc.com%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=TEQv8jwcE78USj_tThwu7PTR_MGcxAFmUH9hCQLl1ZQ&code_challenge=5mAPCtbhX_5NnEDF78hs3i8dt9swxKOmw5cAAxnaWKw&code_challenge_method=S256', '_blank')">
+                        <div class="system-card" onclick="window.open('https://caa-prd-auth.edge.wdc.com/realms/CAA/protocol/openid-connect/auth?client_id=hr_skill_development&scope=openid%20email%20profile&response_type=code&redirect_uri=https%3A%2F%2Fpeople-skill-development-system.edge.wdc.com%2Fapi%2Fauth%2Fcallback%2Fkeycloak', '_blank')">
                             <div class="system-icon">🎯</div>
                             <div class="system-name">Skill Development System</div>
                             <div class="system-desc">
                                 ระบบพัฒนาทักษะอย่างเป็นทางการ<br>
-                                • สร้างและจัดการหลักสูตร<br>
-                                • ติดตามทักษะพนักงาน<br>
-                                • บันทึกอิเล็กทรอนิกส์<br>
-                                • <strong>ต้อง Login ด้วย WD Account</strong>
+                                • ต้อง Login ด้วย WD Account
                             </div>
-                            <span class="system-badge badge-official">🔐 Official System</span>
+                            <span class="system-badge badge-official">🔐 Official</span>
                         </div>
 
-                        <!-- Training Catalog (ระบบเก่า) -->
                         <div class="system-card" onclick="window.open('https://sakorn564.github.io/Training-skill-update/', '_blank')">
                             <div class="system-icon">📚</div>
                             <div class="system-name">Training Catalog</div>
                             <div class="system-desc">
-                                ระบบดูข้อมูลหลักสูตรอบรม<br>
-                                • ดูรายการคอร์สทั้งหมด<br>
-                                • ข้อมูลอาจารย์และตารางเรียน<br>
-                                • ไม่ต้อง Login<br>
-                                • <strong>เข้าถึงง่าย รวดเร็ว</strong>
+                                ดูข้อมูลหลักสูตรอบรม<br>
+                                • ไม่ต้อง Login
                             </div>
-                            <span class="system-badge badge-legacy">📖 Information Only</span>
+                            <span class="system-badge badge-legacy">📖 Info Only</span>
                         </div>
-                    </div>
-
-                    <div class="service-info" style="background: #e3f2fd; border-left: 4px solid #2196f3;">
-                        <h3 style="color: #1565c0;">💡 คำแนะนำ</h3>
-                        <p style="color: #1565c0;">
-                        • <strong>Skill Development System</strong> - ใช้สำหรับลงทะเบียนเรียนจริง บันทึกผลการเรียน<br>
-                        • <strong>Training Catalog</strong> - ใช้ดูข้อมูลคอร์สเบื้องต้นก่อนตัดสินใจลงเรียน<br>
-                        • หากมีปัญหาในการเข้าใช้งาน กรุณาติดต่อแผนก HR: hr@wd.com</p>
-                    </div>
-                `
-            },
-            hr: {
-                icon: '👥',
-                title: 'HR Services - ทรัพยากรบุคคล',
-                content: `
-                    <div class="service-info">
-                        <h3>📋 รายละเอียดบริการ</h3>
-                        <p>แผนก HR ให้บริการเกี่ยวกับการบริหารทรัพยากรบุคคล สวัสดิการ และเอกสารครบวงจร</p>
-                    </div>
-
-                    <div class="hr-menu-section">
-                        <div class="hr-section-title">
-                            <span>ℹ️</span> ข้อมูลส่วนตัวของพนักงาน
-                        </div>
-                        <div class="hr-menu-grid">
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบข้อมูลส่วนตัว...')">
-                                ข้อมูลส่วนตัว
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดระบบสิทธิประโยชน์...')">
-                                สิทธิประโยชน์ในสัญญา
-                            </div>
-                            <div class="hr-menu-item" onclick="alert('กำลังเปิดฐานะนักศึกษา...')">
-                                ฐานะนักศึกษาระหว่างงาน
-                            </div>
-                            <div class="hr-menu-item hot-badge" onclick="alert('กำลังเปิดระบบคู่มือ HR...')">
-                                คู่มือการใช้งาน HR
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="action-buttons">
-                        <button class="primary-btn" onclick="alert('กำลังเชื่อมต่อระบบ HR Portal...')">
-                            🏠 ไปยัง HR Portal
-                        </button>
-                        <button class="secondary-btn" onclick="alert('ติดต่อแผนก HR: hr@wd.com')">
-                            📞 ติดต่อ HR
-                        </button>
                     </div>
                 `
             },
             kpi: {
                 icon: '📊',
-                title: 'KPI Input - บันทึกผลงาน',
+                title: 'KPI Input',
                 content: `
                     <div class="service-info">
                         <h3>📋 ระบบบันทึก KPI</h3>
-                        <p>เลือกระบบที่ต้องการบันทึกข้อมูล - SGC, KAIZEN, หรือ Contam Good Catch</p>
+                        <p>เลือกระบบที่ต้องการบันทึก</p>
                     </div>
 
                     <div class="kpi-card-grid">
-                        <!-- SGC -->
                         <div class="kpi-card" onclick="window.open('https://app.smartsheet.com/b/publish?EQBCT=abb88d189f554e83b9a94c7ef66604b0', '_blank')">
                             <div class="kpi-card-icon">🎯</div>
                             <div class="kpi-card-title">SGC</div>
-                            <div class="kpi-card-desc">
-                                Small Group Circle<br>
-                                บันทึกกิจกรรมกลุ่มย่อย<br>
-                                และโครงการปรับปรุงคุณภาพ
-                            </div>
+                            <div class="kpi-card-desc">Small Group Circle</div>
                         </div>
 
-                        <!-- KAIZEN -->
                         <div class="kpi-card" onclick="window.open('https://app.smartsheet.com/b/form/019b2ba9e0a07493b535994839137d3c', '_blank')">
                             <div class="kpi-card-icon">💡</div>
                             <div class="kpi-card-title">KAIZEN</div>
-                            <div class="kpi-card-desc">
-                                Continuous Improvement<br>
-                                ส่งข้อเสนอแนะการปรับปรุง<br>
-                                และพัฒนากระบวนการทำงาน
-                            </div>
+                            <div class="kpi-card-desc">Continuous Improvement</div>
                         </div>
 
-                        <!-- Contam Good Catch -->
                         <div class="kpi-card" onclick="window.open('https://app.smartsheet.com/b/form/fca7a24abf3f422d96ea0a668d972aff', '_blank')">
                             <div class="kpi-card-icon">🛡️</div>
                             <div class="kpi-card-title">Contam Good Catch</div>
-                            <div class="kpi-card-desc">
-                                FOD Prevention<br>
-                                รายงานการพบสิ่งแปลกปลอม<br>
-                                และการป้องกันการปนเปื้อน
-                            </div>
+                            <div class="kpi-card-desc">FOD Prevention</div>
                         </div>
-                    </div>
-
-                    <div class="service-info" style="background: #e8f5e9; border-left: 4px solid #4caf50;">
-                        <h3 style="color: #2e7d32;">✅ คำแนะนำการใช้งาน</h3>
-                        <p style="color: #2e7d32;">
-                        • <strong>SGC</strong> - ใช้สำหรับบันทึกกิจกรรม Small Group Circle<br>
-                        • <strong>KAIZEN</strong> - ส่งไอเดียการปรับปรุงกระบวนการทำงาน<br>
-                        • <strong>Contam Good Catch</strong> - รายงานสิ่งแปลกปลอมที่พบเจอ<br>
-                        • ข้อมูลจะถูกส่งไปยังระบบ Smartsheet โดยอัตโนมัติ</p>
                     </div>
                 `
             }
         };
-
-        // Open Category Modal
+        
         function openCategory(categoryId) {
             const service = services[categoryId];
             if (service) {
@@ -1294,107 +1372,60 @@
                 document.body.style.overflow = 'hidden';
             }
         }
-
-        // Close Modal
+        
         function closeModal() {
             document.getElementById('serviceModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
-        // Close modal when clicking outside
+        
         window.onclick = function(event) {
-            const modal = document.getElementById('serviceModal');
-            if (event.target == modal) {
+            if (event.target == document.getElementById('serviceModal')) {
                 closeModal();
             }
         }
-
-        // Search Function
+        
         function searchServices() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            
-            if (searchTerm.trim() === '') {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            if (!term) {
                 alert('กรุณาใส่คำค้นหา');
                 return;
             }
-
-            const searchMap = {
-                'รถ': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
-                'รถรับส่ง': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
-                'bus': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
-                'อาหาร': () => window.open('https://sakorn564.github.io/food-menu-system/', '_blank'),
-                'แคนทีน': () => window.open('https://sakorn564.github.io/food-menu-system/', '_blank'),
-                'canteen': () => window.open('https://sakorn564.github.io/food-menu-system/', '_blank'),
+            
+            const map = {
+                'รถ': () => trackAndOpen('bus', 'https://sakorn564.github.io/wd-bus-system/'),
+                'bus': () => trackAndOpen('bus', 'https://sakorn564.github.io/wd-bus-system/'),
+                'อาหาร': 'food',
+                'แคนทีน': 'food',
+                'food': 'food',
+                'canteen': 'food',
                 'คลินิก': 'clinic',
-                'โรงพยาบาล': 'clinic',
                 'clinic': 'clinic',
-                'แพทย์': 'clinic',
-                'หมอ': 'clinic',
-                'hr': 'hr',
-                'ทรัพยากรบุคคล': 'hr',
                 'อบรม': 'training',
                 'training': 'training',
-                'เทรนนิ่ง': 'training',
-                'คอร์ส': 'training',
-                'พัฒนา': 'training',
-                'เรียน': 'training',
-                'ร้องเรียน': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
-                'ชมเชย': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
-                'เสนอแนะ': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
-                'feedback': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'),
                 'kpi': 'kpi',
-                'sgc': 'kpi',
-                'kaizen': 'kpi',
-                'contam': 'kpi',
-                'good catch': 'kpi'
+                'ร้องเรียน': () => trackAndOpen('feedback', 'https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83')
             };
-
-            const result = searchMap[searchTerm];
             
+            const result = map[term];
             if (typeof result === 'function') {
                 result();
             } else if (result) {
-                openCategory(result);
+                trackAndOpenCategory(result, result);
             } else {
-                alert('ไม่พบบริการที่คุณค้นหา กรุณาลองคำค้นหาอื่น');
+                alert('ไม่พบบริการ');
             }
         }
-
-        // Enter key to search
+        
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchServices();
-            }
+            if (e.key === 'Enter') searchServices();
         });
-
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all category cards
+        
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.category-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = `all 0.5s ease ${index * 0.1}s`;
-                observer.observe(card);
-            });
+            trackEvent('view');
+            updateStatsDisplay();
+            console.log('%c🚀 WWC Smart Services Hub', 'color: #667eea; font-size: 24px; font-weight: bold;');
+            console.log('%cVersion 1.8.0 | Complete with Clinic Schedule Table', 'color: #666; font-size: 14px;');
         });
-
-        console.log('%c🚀 WWC Smart Services Hub', 'color: #667eea; font-size: 24px; font-weight: bold;');
-        console.log('%cVersion 1.2.0 | Developed with ❤️', 'color: #666; font-size: 14px;');
     </script>
 </body>
 </html>

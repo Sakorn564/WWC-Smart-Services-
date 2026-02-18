@@ -647,6 +647,10 @@
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
         }
 
+        .kpi-card:nth-child(4) {
+            background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
+        }
+
         /* System Selection */
         .system-selection {
             display: grid;
@@ -786,13 +790,13 @@
             <h2>⚡ เมนูลัด (Quick Actions)</h2>
             <div class="quick-actions-grid">
                 <button class="quick-action-btn" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
-                    🚌 รถรับส่ง
+                    🚌 จองรถรับส่ง
                 </button>
                 <button class="quick-action-btn" onclick="openCategory('food')">
                     🍽️ ดูเมนูวันนี้
                 </button>
                 <button class="quick-action-btn" onclick="openCategory('clinic')">
-                    🏥 คลินิก
+                    🏥 นัดหมายคลินิก
                 </button>
                 <button class="quick-action-btn" onclick="openCategory('training')">
                     🎓 ลงทะเบียนอบรม
@@ -812,21 +816,21 @@
             <div class="category-card" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
                 <div class="category-icon">🚌</div>
                 <div class="category-title">รถรับส่งพนักงาน</div>
-                <div class="category-desc">ตรวจสอบเวลา เส้นทาง และลงทะเบียนรถรับส่ง</div>
+                <div class="category-desc">ตรวจสอบเวลา เส้นทาง และจองรถรับส่ง</div>
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
             <div class="category-card" onclick="openCategory('food')">
                 <div class="category-icon">🍽️</div>
                 <div class="category-title">แคนทีน</div>
-                <div class="category-desc">เมนูอาหาร ราคา </div>
+                <div class="category-desc">เมนูอาหาร ราคา และสั่งอาหารล่วงหน้า</div>
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
             <div class="category-card" onclick="openCategory('clinic')">
                 <div class="category-icon">🏥</div>
                 <div class="category-title">คลินิกในบริษัท</div>
-                <div class="category-desc">ดูตารางเวลาแพทย์ประจำวัน</div>
+                <div class="category-desc">นัดหมายแพทย์ พยาบาล และขอใบรับรอง</div>
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
@@ -892,7 +896,7 @@
             </div>
             <p>© 2025 Western Digital Corporation. All Rights Reserved.</p>
             <p style="font-size: 0.9em; margin-top: 10px; color: #999;">
-                Version 2.0.0 • Last Updated: 2025-01-27
+                Version 2.1.0 • Last Updated: 2025-01-27
             </p>
         </div>
     </div>
@@ -923,7 +927,7 @@
         const services = {
             clinic: {
                 icon: '🏥',
-                title: 'คลินิกในบริษัท PRB',
+                title: 'คลินิกในบริษัท PRB1',
                 content: `
                     <div class="service-info">
                         <h3>📋 รายละเอียดบริการ</h3>
@@ -1139,6 +1143,12 @@
                             <div class="kpi-card-title">Contam Good Catch</div>
                             <div class="kpi-card-desc">FOD Prevention</div>
                         </div>
+
+                        <div class="kpi-card" onclick="window.open('https://app.smartsheet.com/b/form/e361d4f2dc334268aa2f17ceffe53470', '_blank')">
+                            <div class="kpi-card-icon">🌍</div>
+                            <div class="kpi-card-title">PRB GR🌍W GREEN TOGETHER</div>
+                            <div class="kpi-card-desc">Environmental Initiative</div>
+                        </div>
                     </div>
                 `
             }
@@ -1204,7 +1214,7 @@
         
         document.addEventListener('DOMContentLoaded', function() {
             console.log('%c🚀 WWC Smart Services Hub', 'color: #667eea; font-size: 24px; font-weight: bold;');
-            console.log('%cVersion 2.0.0 | Simplified - No Analytics', 'color: #666; font-size: 14px;');
+            console.log('%cVersion 2.1.0 | Added PRB GREEN TOGETHER', 'color: #666; font-size: 14px;');
         });
     </script>
 </body>

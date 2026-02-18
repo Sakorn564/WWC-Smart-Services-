@@ -523,78 +523,6 @@
             color: #764ba2;
         }
 
-        /* Stats Widget */
-        .stats-widget {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            min-width: 280px;
-            z-index: 999;
-            animation: slideInFromRight 0.5s ease;
-        }
-
-        @keyframes slideInFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .stats-widget:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-            transform: translateY(-3px);
-            transition: all 0.3s ease;
-        }
-
-        .stats-header {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 2px solid rgba(255,255,255,0.3);
-            padding-bottom: 10px;
-        }
-
-        .stats-content {
-            font-size: 0.95em;
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px 0;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .stat-row:last-child {
-            border-bottom: none;
-        }
-
-        .stat-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stat-value {
-            font-weight: bold;
-            font-size: 1.3em;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
         /* Clinic Schedule Table */
         .clinic-schedule {
             margin: 20px 0;
@@ -783,22 +711,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .stats-widget {
-                top: auto;
-                bottom: 20px;
-                right: 20px;
-                min-width: 200px;
-                padding: 15px;
-            }
-
-            .stats-header {
-                font-size: 1.1em;
-            }
-
-            .stat-value {
-                font-size: 1.1em;
-            }
-
             .header h1 {
                 font-size: 1.8em;
             }
@@ -854,58 +766,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Stats Widget -->
-        <div class="stats-widget" id="statsWidget">
-            <div class="stats-header">
-                <span>📊</span>
-                <span>สถิติการใช้งาน</span>
-            </div>
-            <div class="stats-content">
-                <div class="stat-row">
-                    <span class="stat-label">
-                        <span>👥</span>
-                        <span>ผู้เข้าชมทั้งหมด</span>
-                    </span>
-                    <span class="stat-value" id="totalViews">0</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">
-                        <span>🚌</span>
-                        <span>จองรถ</span>
-                    </span>
-                    <span class="stat-value" id="busClicks">0</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">
-                        <span>🍽️</span>
-                        <span>ดูเมนู</span>
-                    </span>
-                    <span class="stat-value" id="foodClicks">0</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">
-                        <span>🏥</span>
-                        <span>คลินิก</span>
-                    </span>
-                    <span class="stat-value" id="clinicClicks">0</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">
-                        <span>🎓</span>
-                        <span>อบรม</span>
-                    </span>
-                    <span class="stat-value" id="trainingClicks">0</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">
-                        <span>📊</span>
-                        <span>KPI</span>
-                    </span>
-                    <span class="stat-value" id="kpiClicks">0</span>
-                </div>
-            </div>
-        </div>
-
         <!-- Header -->
         <div class="header">
             <h1>🚀 WWC Smart Services Hub</h1>
@@ -925,22 +785,22 @@
         <div class="quick-actions">
             <h2>⚡ เมนูลัด (Quick Actions)</h2>
             <div class="quick-actions-grid">
-                <button class="quick-action-btn" onclick="trackAndOpen('bus', 'https://sakorn564.github.io/wd-bus-system/')">
-                    🚌 จองรถรับส่ง
+                <button class="quick-action-btn" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
+                    🚌 รถรับส่ง
                 </button>
-                <button class="quick-action-btn" onclick="trackAndOpenCategory('food', 'food')">
+                <button class="quick-action-btn" onclick="openCategory('food')">
                     🍽️ ดูเมนูวันนี้
                 </button>
-                <button class="quick-action-btn" onclick="trackAndOpenCategory('clinic', 'clinic')">
-                    🏥 นัดหมายคลินิก
+                <button class="quick-action-btn" onclick="openCategory('clinic')">
+                    🏥 คลินิก
                 </button>
-                <button class="quick-action-btn" onclick="trackAndOpenCategory('training', 'training')">
+                <button class="quick-action-btn" onclick="openCategory('training')">
                     🎓 ลงทะเบียนอบรม
                 </button>
-                <button class="quick-action-btn" onclick="trackAndOpen('feedback', 'https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83')">
+                <button class="quick-action-btn" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
                     💬 ร้องเรียน/ชมเชย
                 </button>
-                <button class="quick-action-btn" onclick="trackAndOpenCategory('kpi', 'kpi')">
+                <button class="quick-action-btn" onclick="openCategory('kpi')">
                     📊 KPI Input
                 </button>
             </div>
@@ -949,42 +809,42 @@
         <!-- Categories -->
         <h2 class="categories-title">📱 หมวดหมู่บริการทั้งหมด</h2>
         <div class="categories-grid">
-            <div class="category-card" onclick="trackAndOpen('bus', 'https://sakorn564.github.io/wd-bus-system/')">
+            <div class="category-card" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
                 <div class="category-icon">🚌</div>
                 <div class="category-title">รถรับส่งพนักงาน</div>
-                <div class="category-desc">ตรวจสอบเวลา เส้นทาง และจองรถรับส่ง</div>
+                <div class="category-desc">ตรวจสอบเวลา เส้นทาง และลงทะเบียนรถรับส่ง</div>
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
-            <div class="category-card" onclick="trackAndOpenCategory('food', 'food')">
+            <div class="category-card" onclick="openCategory('food')">
                 <div class="category-icon">🍽️</div>
                 <div class="category-title">แคนทีน</div>
-                <div class="category-desc">เมนูอาหาร ราคา และสั่งอาหารล่วงหน้า</div>
+                <div class="category-desc">เมนูอาหาร ราคา </div>
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
-            <div class="category-card" onclick="trackAndOpenCategory('clinic', 'clinic')">
+            <div class="category-card" onclick="openCategory('clinic')">
                 <div class="category-icon">🏥</div>
                 <div class="category-title">คลินิกในบริษัท</div>
-                <div class="category-desc">นัดหมายแพทย์ พยาบาล และขอใบรับรอง</div>
+                <div class="category-desc">ดูตารางเวลาแพทย์ประจำวัน</div>
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
-            <div class="category-card" onclick="trackAndOpenCategory('training', 'training')">
+            <div class="category-card" onclick="openCategory('training')">
                 <div class="category-icon">🎓</div>
                 <div class="category-title">อบรม & พัฒนา</div>
                 <div class="category-desc">คอร์สอบรม ลงทะเบียน และติดตามผล</div>
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
-            <div class="category-card" onclick="trackAndOpen('feedback', 'https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83')">
+            <div class="category-card" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
                 <div class="category-icon">💬</div>
                 <div class="category-title">เสนอแนะ/ร้องเรียน/ชมเชย</div>
                 <div class="category-desc">ส่งข้อเสนอแนะ ร้องเรียน หรือชมเชยบริการ</div>
                 <span class="category-badge badge-new">✨ ใหม่</span>
             </div>
 
-            <div class="category-card" onclick="trackAndOpenCategory('kpi', 'kpi')">
+            <div class="category-card" onclick="openCategory('kpi')">
                 <div class="category-icon">📊</div>
                 <div class="category-title">KPI Input</div>
                 <div class="category-desc">บันทึก SGC, KAIZEN, Contam Good Catch</div>
@@ -1032,7 +892,7 @@
             </div>
             <p>© 2025 Western Digital Corporation. All Rights Reserved.</p>
             <p style="font-size: 0.9em; margin-top: 10px; color: #999;">
-                Version 1.8.0 • Last Updated: 2025-01-27
+                Version 2.0.0 • Last Updated: 2025-01-27
             </p>
         </div>
     </div>
@@ -1059,89 +919,11 @@
     </div>
 
     <script>
-        // ===== ANALYTICS SYSTEM =====
-        
-        const STATS_KEY = 'wwc_stats';
-        
-        function loadStats() {
-            const stats = localStorage.getItem(STATS_KEY);
-            if (stats) {
-                return JSON.parse(stats);
-            }
-            return {
-                totalViews: 0,
-                busClicks: 0,
-                foodClicks: 0,
-                clinicClicks: 0,
-                trainingClicks: 0,
-                kpiClicks: 0,
-                feedbackClicks: 0
-            };
-        }
-        
-        function saveStats(stats) {
-            localStorage.setItem(STATS_KEY, JSON.stringify(stats));
-        }
-        
-        function updateStatsDisplay() {
-            const stats = loadStats();
-            document.getElementById('totalViews').textContent = formatNumber(stats.totalViews);
-            document.getElementById('busClicks').textContent = formatNumber(stats.busClicks);
-            document.getElementById('foodClicks').textContent = formatNumber(stats.foodClicks);
-            document.getElementById('clinicClicks').textContent = formatNumber(stats.clinicClicks);
-            document.getElementById('trainingClicks').textContent = formatNumber(stats.trainingClicks);
-            document.getElementById('kpiClicks').textContent = formatNumber(stats.kpiClicks);
-        }
-        
-        function formatNumber(num) {
-            if (num >= 1000000) {
-                return (num / 1000000).toFixed(1) + 'M';
-            } else if (num >= 1000) {
-                return (num / 1000).toFixed(1) + 'K';
-            }
-            return num.toString();
-        }
-        
-        function trackEvent(category) {
-            const stats = loadStats();
-            
-            if (category === 'view') {
-                stats.totalViews++;
-            } else if (category === 'bus') {
-                stats.busClicks++;
-            } else if (category === 'food') {
-                stats.foodClicks++;
-            } else if (category === 'clinic') {
-                stats.clinicClicks++;
-            } else if (category === 'training') {
-                stats.trainingClicks++;
-            } else if (category === 'kpi') {
-                stats.kpiClicks++;
-            } else if (category === 'feedback') {
-                stats.feedbackClicks++;
-            }
-            
-            saveStats(stats);
-            updateStatsDisplay();
-            
-            console.log('📊 Tracked:', category, '| Total:', stats.totalViews);
-        }
-        
-        function trackAndOpen(category, url) {
-            trackEvent(category);
-            window.open(url, '_blank');
-        }
-        
-        function trackAndOpenCategory(category, modalId) {
-            trackEvent(category);
-            openCategory(modalId);
-        }
-        
         // ===== SERVICE DATA =====
         const services = {
             clinic: {
                 icon: '🏥',
-                title: 'คลินิกในบริษัท PRB1',
+                title: 'คลินิกในบริษัท PRB',
                 content: `
                     <div class="service-info">
                         <h3>📋 รายละเอียดบริการ</h3>
@@ -1392,8 +1174,8 @@
             }
             
             const map = {
-                'รถ': () => trackAndOpen('bus', 'https://sakorn564.github.io/wd-bus-system/'),
-                'bus': () => trackAndOpen('bus', 'https://sakorn564.github.io/wd-bus-system/'),
+                'รถ': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
+                'bus': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
                 'อาหาร': 'food',
                 'แคนทีน': 'food',
                 'food': 'food',
@@ -1403,14 +1185,14 @@
                 'อบรม': 'training',
                 'training': 'training',
                 'kpi': 'kpi',
-                'ร้องเรียน': () => trackAndOpen('feedback', 'https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83')
+                'ร้องเรียน': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')
             };
             
             const result = map[term];
             if (typeof result === 'function') {
                 result();
             } else if (result) {
-                trackAndOpenCategory(result, result);
+                openCategory(result);
             } else {
                 alert('ไม่พบบริการ');
             }
@@ -1421,10 +1203,8 @@
         });
         
         document.addEventListener('DOMContentLoaded', function() {
-            trackEvent('view');
-            updateStatsDisplay();
             console.log('%c🚀 WWC Smart Services Hub', 'color: #667eea; font-size: 24px; font-weight: bold;');
-            console.log('%cVersion 1.8.0 | Complete with Clinic Schedule Table', 'color: #666; font-size: 14px;');
+            console.log('%cVersion 2.0.0 | Simplified - No Analytics', 'color: #666; font-size: 14px;');
         });
     </script>
 </body>

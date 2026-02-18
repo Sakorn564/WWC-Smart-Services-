@@ -23,6 +23,67 @@
             margin: 0 auto;
         }
 
+        /* Analytics Floating Button */
+        .analytics-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(102, 126, 234, 0.7);
+            }
+        }
+
+        .analytics-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .analytics-btn-icon {
+            font-size: 2em;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+        }
+
+        .analytics-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7em;
+            font-weight: bold;
+            border: 3px solid white;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
         /* Header */
         .header {
             background: white;
@@ -523,6 +584,159 @@
             color: #764ba2;
         }
 
+        /* Analytics Dashboard */
+        .analytics-dashboard {
+            padding: 20px 0;
+        }
+
+        .stats-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-btn {
+            padding: 15px 30px;
+            background: transparent;
+            border: none;
+            color: #666;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-btn:hover {
+            color: #667eea;
+        }
+
+        .stats-content {
+            display: none;
+        }
+
+        .stats-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .stat-card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .stat-card-label {
+            font-size: 1em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .stat-card-value {
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .stat-card:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .stat-card:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .stat-card:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .stat-card:nth-child(5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .stat-card:nth-child(6) {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+        }
+
+        .chart-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .chart-container h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 300px;
+            gap: 10px;
+        }
+
+        .bar {
+            flex: 1;
+            background: linear-gradient(to top, #667eea 0%, #764ba2 100%);
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 10px;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+            transform: scaleY(1.05);
+        }
+
+        .bar-value {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -30px;
+            font-size: 0.85em;
+            color: #666;
+            white-space: nowrap;
+        }
+
         /* Clinic Schedule Table */
         .clinic-schedule {
             margin: 20px 0;
@@ -715,6 +929,17 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .analytics-btn {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .analytics-btn-icon {
+                font-size: 1.5em;
+            }
+
             .header h1 {
                 font-size: 1.8em;
             }
@@ -765,11 +990,35 @@
             .canteen-iframe-container {
                 height: 60vh;
             }
+
+            .stats-tabs {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .tab-btn {
+                padding: 12px;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bar-chart {
+                height: 250px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Analytics Floating Button -->
+        <div class="analytics-btn" onclick="openAnalytics()">
+            <span class="analytics-btn-icon">📊</span>
+            <span class="analytics-badge" id="todayViews">0</span>
+        </div>
+
         <!-- Header -->
         <div class="header">
             <h1>🚀 WWC Smart Services Hub</h1>
@@ -789,22 +1038,22 @@
         <div class="quick-actions">
             <h2>⚡ เมนูลัด (Quick Actions)</h2>
             <div class="quick-actions-grid">
-                <button class="quick-action-btn" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
+                <button class="quick-action-btn" onclick="trackClick('bus'); window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
                     🚌 จองรถรับส่ง
                 </button>
-                <button class="quick-action-btn" onclick="openCategory('food')">
+                <button class="quick-action-btn" onclick="trackClick('food'); openCategory('food')">
                     🍽️ ดูเมนูวันนี้
                 </button>
-                <button class="quick-action-btn" onclick="openCategory('clinic')">
+                <button class="quick-action-btn" onclick="trackClick('clinic'); openCategory('clinic')">
                     🏥 นัดหมายคลินิก
                 </button>
-                <button class="quick-action-btn" onclick="openCategory('training')">
+                <button class="quick-action-btn" onclick="trackClick('training'); openCategory('training')">
                     🎓 ลงทะเบียนอบรม
                 </button>
-                <button class="quick-action-btn" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
+                <button class="quick-action-btn" onclick="trackClick('feedback'); window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
                     💬 ร้องเรียน/ชมเชย
                 </button>
-                <button class="quick-action-btn" onclick="openCategory('kpi')">
+                <button class="quick-action-btn" onclick="trackClick('kpi'); openCategory('kpi')">
                     📊 KPI Input
                 </button>
             </div>
@@ -813,42 +1062,42 @@
         <!-- Categories -->
         <h2 class="categories-title">📱 หมวดหมู่บริการทั้งหมด</h2>
         <div class="categories-grid">
-            <div class="category-card" onclick="window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
+            <div class="category-card" onclick="trackClick('bus'); window.open('https://sakorn564.github.io/wd-bus-system/', '_blank')">
                 <div class="category-icon">🚌</div>
                 <div class="category-title">รถรับส่งพนักงาน</div>
                 <div class="category-desc">ตรวจสอบเวลา เส้นทาง และจองรถรับส่ง</div>
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
-            <div class="category-card" onclick="openCategory('food')">
+            <div class="category-card" onclick="trackClick('food'); openCategory('food')">
                 <div class="category-icon">🍽️</div>
                 <div class="category-title">แคนทีน</div>
                 <div class="category-desc">เมนูอาหาร ราคา และสั่งอาหารล่วงหน้า</div>
                 <span class="category-badge badge-popular">🔥 ยอดนิยม</span>
             </div>
 
-            <div class="category-card" onclick="openCategory('clinic')">
+            <div class="category-card" onclick="trackClick('clinic'); openCategory('clinic')">
                 <div class="category-icon">🏥</div>
                 <div class="category-title">คลินิกในบริษัท</div>
                 <div class="category-desc">นัดหมายแพทย์ พยาบาล และขอใบรับรอง</div>
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
-            <div class="category-card" onclick="openCategory('training')">
+            <div class="category-card" onclick="trackClick('training'); openCategory('training')">
                 <div class="category-icon">🎓</div>
                 <div class="category-title">อบรม & พัฒนา</div>
                 <div class="category-desc">คอร์สอบรม ลงทะเบียน และติดตามผล</div>
                 <span class="category-badge">✓ พร้อมใช้</span>
             </div>
 
-            <div class="category-card" onclick="window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
+            <div class="category-card" onclick="trackClick('feedback'); window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')">
                 <div class="category-icon">💬</div>
                 <div class="category-title">เสนอแนะ/ร้องเรียน/ชมเชย</div>
                 <div class="category-desc">ส่งข้อเสนอแนะ ร้องเรียน หรือชมเชยบริการ</div>
                 <span class="category-badge badge-new">✨ ใหม่</span>
             </div>
 
-            <div class="category-card" onclick="openCategory('kpi')">
+            <div class="category-card" onclick="trackClick('kpi'); openCategory('kpi')">
                 <div class="category-icon">📊</div>
                 <div class="category-title">KPI Input</div>
                 <div class="category-desc">บันทึก SGC, KAIZEN, Contam Good Catch</div>
@@ -896,12 +1145,12 @@
             </div>
             <p>© 2025 Western Digital Corporation. All Rights Reserved.</p>
             <p style="font-size: 0.9em; margin-top: 10px; color: #999;">
-                Version 2.1.0 • Last Updated: 2025-01-27
+                Version 2.2.0 • Last Updated: 2025-01-27
             </p>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Service Modal -->
     <div id="serviceModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -922,7 +1171,346 @@
         </div>
     </div>
 
+    <!-- Analytics Modal -->
+    <div id="analyticsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span>📊</span>
+                    <span>สถิติการใช้งานระบบ</span>
+                </div>
+                <button class="close-btn" onclick="closeAnalyticsModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="analytics-dashboard">
+                    <!-- Tabs -->
+                    <div class="stats-tabs">
+                        <button class="tab-btn active" onclick="switchTab('daily')">
+                            📅 รายวัน (Daily)
+                        </button>
+                        <button class="tab-btn" onclick="switchTab('monthly')">
+                            📆 รายเดือน (Monthly)
+                        </button>
+                    </div>
+
+                    <!-- Daily Stats -->
+                    <div id="dailyStats" class="stats-content active">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-card-icon">👥</div>
+                                <div class="stat-card-label">ผู้เข้าชมวันนี้</div>
+                                <div class="stat-card-value" id="dailyTotalViews">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">🚌</div>
+                                <div class="stat-card-label">จองรถ</div>
+                                <div class="stat-card-value" id="dailyBusClicks">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">🍽️</div>
+                                <div class="stat-card-label">ดูเมนู</div>
+                                <div class="stat-card-value" id="dailyFoodClicks">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">🏥</div>
+                                <div class="stat-card-label">คลินิก</div>
+                                <div class="stat-card-value" id="dailyClinicClicks">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">🎓</div>
+                                <div class="stat-card-label">อบรม</div>
+                                <div class="stat-card-value" id="dailyTrainingClicks">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">📊</div>
+                                <div class="stat-card-label">KPI</div>
+                                <div class="stat-card-value" id="dailyKpiClicks">0</div>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <h3>📈 กราฟการใช้งานวันนี้</h3>
+                            <div class="bar-chart" id="dailyChart"></div>
+                        </div>
+                    </div>
+
+                    <!-- Monthly Stats -->
+                    <div id="monthlyStats" class="stats-content">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-card-icon">👥</div>
+                                <div class="stat-card-label">ผู้เข้าชมเดือนนี้</div>
+                                <div class="stat-card-value" id="monthlyTotalViews">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">🚌</div>
+                                <div class="stat-card-label">จองรถ</div>
+                                <div class="stat-card-value" id="monthlyBusClicks">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">🍽️</div>
+                                <div class="stat-card-label">ดูเมนู</div>
+                                <div class="stat-card-value" id="monthlyFoodClicks">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">🏥</div>
+                                <div class="stat-card-label">คลินิก</div>
+                                <div class="stat-card-value" id="monthlyClinicClicks">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">🎓</div>
+                                <div class="stat-card-label">อบรม</div>
+                                <div class="stat-card-value" id="monthlyTrainingClicks">0</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-card-icon">📊</div>
+                                <div class="stat-card-label">KPI</div>
+                                <div class="stat-card-value" id="monthlyKpiClicks">0</div>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <h3>📈 กราฟการใช้งานเดือนนี้</h3>
+                            <div class="bar-chart" id="monthlyChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; padding-top: 20px; border-top: 2px solid #eee;">
+                <button class="back-home-btn" onclick="closeAnalyticsModal()">
+                    <span>🏠</span>
+                    <span>กลับหน้าหลัก</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // ===== ANALYTICS SYSTEM =====
+        
+        const STATS_KEY = 'wwc_stats';
+        const DAILY_KEY = 'wwc_daily_stats';
+        const MONTHLY_KEY = 'wwc_monthly_stats';
+        
+        function getCurrentDate() {
+            const now = new Date();
+            return now.toISOString().split('T')[0]; // YYYY-MM-DD
+        }
+        
+        function getCurrentMonth() {
+            const now = new Date();
+            return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`; // YYYY-MM
+        }
+        
+        function loadDailyStats() {
+            const today = getCurrentDate();
+            const stored = localStorage.getItem(DAILY_KEY);
+            
+            if (stored) {
+                const data = JSON.parse(stored);
+                if (data.date === today) {
+                    return data.stats;
+                }
+            }
+            
+            // New day, reset stats
+            const newStats = {
+                date: today,
+                stats: {
+                    totalViews: 0,
+                    busClicks: 0,
+                    foodClicks: 0,
+                    clinicClicks: 0,
+                    trainingClicks: 0,
+                    kpiClicks: 0,
+                    feedbackClicks: 0
+                }
+            };
+            
+            localStorage.setItem(DAILY_KEY, JSON.stringify(newStats));
+            return newStats.stats;
+        }
+        
+        function loadMonthlyStats() {
+            const currentMonth = getCurrentMonth();
+            const stored = localStorage.getItem(MONTHLY_KEY);
+            
+            if (stored) {
+                const data = JSON.parse(stored);
+                if (data.month === currentMonth) {
+                    return data.stats;
+                }
+            }
+            
+            // New month, reset stats
+            const newStats = {
+                month: currentMonth,
+                stats: {
+                    totalViews: 0,
+                    busClicks: 0,
+                    foodClicks: 0,
+                    clinicClicks: 0,
+                    trainingClicks: 0,
+                    kpiClicks: 0,
+                    feedbackClicks: 0
+                }
+            };
+            
+            localStorage.setItem(MONTHLY_KEY, JSON.stringify(newStats));
+            return newStats.stats;
+        }
+        
+        function saveDailyStats(stats) {
+            const data = {
+                date: getCurrentDate(),
+                stats: stats
+            };
+            localStorage.setItem(DAILY_KEY, JSON.stringify(data));
+        }
+        
+        function saveMonthlyStats(stats) {
+            const data = {
+                month: getCurrentMonth(),
+                stats: stats
+            };
+            localStorage.setItem(MONTHLY_KEY, JSON.stringify(data));
+        }
+        
+        function trackClick(category) {
+            const dailyStats = loadDailyStats();
+            const monthlyStats = loadMonthlyStats();
+            
+            if (category === 'bus') {
+                dailyStats.busClicks++;
+                monthlyStats.busClicks++;
+            } else if (category === 'food') {
+                dailyStats.foodClicks++;
+                monthlyStats.foodClicks++;
+            } else if (category === 'clinic') {
+                dailyStats.clinicClicks++;
+                monthlyStats.clinicClicks++;
+            } else if (category === 'training') {
+                dailyStats.trainingClicks++;
+                monthlyStats.trainingClicks++;
+            } else if (category === 'kpi') {
+                dailyStats.kpiClicks++;
+                monthlyStats.kpiClicks++;
+            } else if (category === 'feedback') {
+                dailyStats.feedbackClicks++;
+                monthlyStats.feedbackClicks++;
+            }
+            
+            saveDailyStats(dailyStats);
+            saveMonthlyStats(monthlyStats);
+            updateAnalyticsBadge();
+        }
+        
+        function trackPageView() {
+            const dailyStats = loadDailyStats();
+            const monthlyStats = loadMonthlyStats();
+            
+            dailyStats.totalViews++;
+            monthlyStats.totalViews++;
+            
+            saveDailyStats(dailyStats);
+            saveMonthlyStats(monthlyStats);
+            updateAnalyticsBadge();
+        }
+        
+        function updateAnalyticsBadge() {
+            const dailyStats = loadDailyStats();
+            document.getElementById('todayViews').textContent = dailyStats.totalViews;
+        }
+        
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            } else if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return num.toString();
+        }
+        
+        function updateAnalyticsDashboard() {
+            const dailyStats = loadDailyStats();
+            const monthlyStats = loadMonthlyStats();
+            
+            // Update Daily Stats
+            document.getElementById('dailyTotalViews').textContent = formatNumber(dailyStats.totalViews);
+            document.getElementById('dailyBusClicks').textContent = formatNumber(dailyStats.busClicks);
+            document.getElementById('dailyFoodClicks').textContent = formatNumber(dailyStats.foodClicks);
+            document.getElementById('dailyClinicClicks').textContent = formatNumber(dailyStats.clinicClicks);
+            document.getElementById('dailyTrainingClicks').textContent = formatNumber(dailyStats.trainingClicks);
+            document.getElementById('dailyKpiClicks').textContent = formatNumber(dailyStats.kpiClicks);
+            
+            // Update Monthly Stats
+            document.getElementById('monthlyTotalViews').textContent = formatNumber(monthlyStats.totalViews);
+            document.getElementById('monthlyBusClicks').textContent = formatNumber(monthlyStats.busClicks);
+            document.getElementById('monthlyFoodClicks').textContent = formatNumber(monthlyStats.foodClicks);
+            document.getElementById('monthlyClinicClicks').textContent = formatNumber(monthlyStats.clinicClicks);
+            document.getElementById('monthlyTrainingClicks').textContent = formatNumber(monthlyStats.trainingClicks);
+            document.getElementById('monthlyKpiClicks').textContent = formatNumber(monthlyStats.kpiClicks);
+            
+            // Update Charts
+            updateChart('dailyChart', dailyStats);
+            updateChart('monthlyChart', monthlyStats);
+        }
+        
+        function updateChart(chartId, stats) {
+            const chartContainer = document.getElementById(chartId);
+            const maxValue = Math.max(
+                stats.busClicks,
+                stats.foodClicks,
+                stats.clinicClicks,
+                stats.trainingClicks,
+                stats.kpiClicks
+            ) || 1;
+            
+            const services = [
+                { label: 'รถรับส่ง', value: stats.busClicks },
+                { label: 'แคนทีน', value: stats.foodClicks },
+                { label: 'คลินิก', value: stats.clinicClicks },
+                { label: 'อบรม', value: stats.trainingClicks },
+                { label: 'KPI', value: stats.kpiClicks }
+            ];
+            
+            chartContainer.innerHTML = services.map(service => {
+                const height = (service.value / maxValue) * 100;
+                return `
+                    <div class="bar" style="height: ${height}%;">
+                        <div class="bar-value">${service.value}</div>
+                        <div class="bar-label">${service.label}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function openAnalytics() {
+            updateAnalyticsDashboard();
+            document.getElementById('analyticsModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeAnalyticsModal() {
+            document.getElementById('analyticsModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function switchTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.stats-content').forEach(content => content.classList.remove('active'));
+            if (tab === 'daily') {
+                document.getElementById('dailyStats').classList.add('active');
+            } else {
+                document.getElementById('monthlyStats').classList.add('active');
+            }
+        }
+        
         // ===== SERVICE DATA =====
         const services = {
             clinic: {
@@ -1174,6 +1762,9 @@
             if (event.target == document.getElementById('serviceModal')) {
                 closeModal();
             }
+            if (event.target == document.getElementById('analyticsModal')) {
+                closeAnalyticsModal();
+            }
         }
         
         function searchServices() {
@@ -1184,8 +1775,8 @@
             }
             
             const map = {
-                'รถ': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
-                'bus': () => window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'),
+                'รถ': () => { trackClick('bus'); window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'); },
+                'bus': () => { trackClick('bus'); window.open('https://sakorn564.github.io/wd-bus-system/', '_blank'); },
                 'อาหาร': 'food',
                 'แคนทีน': 'food',
                 'food': 'food',
@@ -1195,13 +1786,14 @@
                 'อบรม': 'training',
                 'training': 'training',
                 'kpi': 'kpi',
-                'ร้องเรียน': () => window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank')
+                'ร้องเรียน': () => { trackClick('feedback'); window.open('https://app.smartsheet.com/b/form/228b63381cd542e584c6f92960277d83', '_blank'); }
             };
             
             const result = map[term];
             if (typeof result === 'function') {
                 result();
             } else if (result) {
+                trackClick(result);
                 openCategory(result);
             } else {
                 alert('ไม่พบบริการ');
@@ -1213,8 +1805,9 @@
         });
         
         document.addEventListener('DOMContentLoaded', function() {
+            trackPageView();
             console.log('%c🚀 WWC Smart Services Hub', 'color: #667eea; font-size: 24px; font-weight: bold;');
-            console.log('%cVersion 2.1.0 | Added PRB GREEN TOGETHER', 'color: #666; font-size: 14px;');
+            console.log('%cVersion 2.2.0 | Analytics Dashboard Added', 'color: #666; font-size: 14px;');
         });
     </script>
 </body>
